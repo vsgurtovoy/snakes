@@ -2,7 +2,12 @@ package snakes.gameworld;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
+import snakes.objects.Apple;
+import snakes.objects.Battery;
+import snakes.objects.ColdApple;
 import snakes.objects.Handler;
+import snakes.objects.Ice;
+import snakes.objects.Rock;
 import snakes.objects.Snake;
 
 public class GameWorld {
@@ -15,6 +20,12 @@ public class GameWorld {
     public Snake getSnake() {
         return snake;
     }
+    
+    private Apple apple;
+    private ColdApple coldApple;
+    private Battery battery;
+    private Ice ice;
+    private Rock rock;
     
     Handler handler;
     
