@@ -10,11 +10,15 @@ public class GameWorld {
     public static int WIDTH = 270;
     public static int ALL_DOTS = 1080;
     
-    
+    private int midPointY;
+    private int midPointX;
     private Snake snake;
-    
     public Snake getSnake() {
         return snake;
+    }
+    
+    public GameWorld(int midPointX, int midpointY) {
+        snake = new Snake(33, midPointY - 5, 17, 12);
     }
     
     public void update(float delta) {
