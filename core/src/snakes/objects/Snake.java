@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package snakes.objects;
 
 import snakes.gameworld.GameWorld;
@@ -23,6 +18,7 @@ public class Snake {
     private float time;
     private direction currentDirection;
     private int length;
+    private int rotation = 0;
     
     public Snake(int x, int y, int width, int height) {
         this.x[0] = x;
@@ -70,5 +66,25 @@ public class Snake {
                 default: break;
             }
         }
+    }
+    
+    public int getX() {
+        return x[0];
+    }
+    
+    public int getY() {
+        return y[0];
+    }
+    
+    public int getWidth() {
+        return width;
+    }
+    
+    public int getHeight() {
+        return height;
+    }
+    
+    public int getRotation() {
+        return rotation;
     }
 }

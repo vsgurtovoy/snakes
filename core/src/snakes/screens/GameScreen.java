@@ -23,14 +23,14 @@ public class GameScreen implements Screen {
         int midPointX = (int) (gameWidth / 2);
         
         world = new GameWorld(midPointX, midPointY); // initialize world
-        renderer = new GameRenderer(world); // initialize renderer
+        renderer = new GameRenderer(world, midPointX, midPointY); // initialize renderer
         Gdx.input.setInputProcessor(new InputHandler(world.getSnake()));
     }
 
     @Override
     public void render(float delta) {
         world.update(delta); // GameWorld updates 
-        renderer.render(); // GameRenderer renders
+        renderer.render(delta); // GameRenderer renders
     }
 
     @Override
