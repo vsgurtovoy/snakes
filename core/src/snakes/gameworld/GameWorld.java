@@ -16,7 +16,7 @@ public class GameWorld {
     }
     
     public GameWorld() {
-        snake = new Snake(40, 40, GameWorld.DOT_SIZE, GameWorld.DOT_SIZE);
+        snake = new Snake(0, 0, GameWorld.DOT_SIZE, GameWorld.DOT_SIZE);
     }
     
     public void update(float delta) {

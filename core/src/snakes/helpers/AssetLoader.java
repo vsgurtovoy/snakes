@@ -31,8 +31,8 @@ public class AssetLoader {
         //birdUp = new TextureRegion(texture, 170, 0, 17, 12);
         //birdUp.flip(false, true);
 
-        TextureRegion[] snakes = { snake1, snake2 };
-        snakeAnimation = new Animation<TextureRegion>(0.06f, snakes);
+        TextureRegion[] snakes = { snake1, snake2};
+        snakeAnimation = new Animation<TextureRegion>(0.6f, snakes);
         snakeAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
 
         apple = new TextureRegion(texture, 153, 0, 10, 10);

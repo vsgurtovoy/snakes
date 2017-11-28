@@ -31,8 +31,32 @@ public class Snake {
         this.y[0] = y;
         this.width = width;
         this.height = height;
-        currentDirection = direction.UP;
-        rotation = 0;
+        currentDirection = direction.DOWN;
+        rotation = 180;
+        length = 0;
+        growSnake(5);
+    }
+    
+    public void growSnake(int x) {
+        for (int i = 1; i < x; i++) {
+            if (currentDirection == direction.UP) {
+                this.x[i] = this.x[i-1];
+                this.y[i] = this.y[i-1] + GameWorld.DOT_SIZE;
+            }
+            if (currentDirection == direction.DOWN) {
+                this.x[i] = this.x[i-1];
+                this.y[i] = this.y[i-1] - GameWorld.DOT_SIZE;
+            }
+            if (currentDirection == direction.LEFT) {
+                this.x[i] = this.x[i-1] + GameWorld.DOT_SIZE;
+                this.y[i] = this.y[i-1];
+            }
+            if (currentDirection == direction.UP) {
+                this.x[i] = this.x[i-1] - GameWorld.DOT_SIZE;
+                this.y[i] = this.y[i-1];
+            }
+        }
+        length = x;
     }
     
     public void moveUp() {
@@ -80,12 +104,12 @@ public class Snake {
         }
     }
     
-    public int getX() {
-        return x[0];
+    public int getX(int i) {
+        return x[i];
     }
     
-    public int getY() {
-        return y[0];
+    public int getY(int i) {
+        return y[i];
     }
     
     public int getWidth() {
@@ -98,5 +122,9 @@ public class Snake {
     
     public int getRotation() {
         return rotation;
+    }
+    
+    public int getLength() {
+        return length;
     }
 }
