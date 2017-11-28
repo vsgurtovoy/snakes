@@ -31,6 +31,21 @@ public class Snake {
         this.height = height;
     }
     
+    public void moveUp() {
+        currentDirection = direction.UP;        
+    }
+
+    public void moveDown() {
+        currentDirection = direction.DOWN;        
+    }
+
+    public void moveLeft() {
+        currentDirection = direction.LEFT;        
+    }
+
+    public void moveRight() {
+        currentDirection = direction.RIGHT;        
+    }    
     public void update(float delta) {
         time += delta;
         if (time >= 1f) {

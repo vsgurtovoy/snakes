@@ -1,5 +1,6 @@
 package snakes.helpers;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import snakes.objects.Snake;
 
@@ -17,6 +18,21 @@ public class InputHandler implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
+        switch (keycode) {
+            case Input.Keys.UP:
+                snake.moveUp();
+                break;
+            case Input.Keys.DOWN:
+                snake.moveDown();
+                break;
+            case Input.Keys.LEFT:
+                snake.moveLeft();
+                break;
+            case Input.Keys.RIGHT:
+                snake.moveRight();
+                break;
+            default: break;
+        }
         return false;
     }
 
