@@ -1,5 +1,6 @@
 package snakes.objects;
 
+import com.badlogic.gdx.math.Circle;
 import snakes.gameworld.GameWorld;
 
 public class Snake {               
@@ -14,6 +15,7 @@ public class Snake {
     // Координаты частей змейки
     private final int x[] = new int[GameWorld.ALL_DOTS];
     private final int y[] = new int[GameWorld.ALL_DOTS];
+    private Circle circle[] = new Circle[GameWorld.ALL_DOTS];
     // Размеры части змейки
     private int width;
     private int height;
@@ -26,15 +28,19 @@ public class Snake {
     // напр
     private int rotation;
     
+    
     public Snake(int x, int y, int width, int height) {
-        this.x[0] = x;
-        this.y[0] = y;
+        this.x[0] = 20;
+        this.y[0] = 20;
         this.width = width;
         this.height = height;
         currentDirection = direction.DOWN;
         rotation = 180;
         length = 0;
         growSnake(5);
+        circle[0] = new Circle(this.x[0]+GameWorld.DOT_SIZE/2,
+                this.y[0]+GameWorld.DOT_SIZE/2, 
+                GameWorld.DOT_SIZE/2);
     }
     
     public void growSnake(int x) {
@@ -51,12 +57,19 @@ public class Snake {
                 this.x[i] = this.x[i-1] + GameWorld.DOT_SIZE;
                 this.y[i] = this.y[i-1];
             }
-            if (currentDirection == direction.UP) {
+            if (currentDirection == direction.RIGHT) {
                 this.x[i] = this.x[i-1] - GameWorld.DOT_SIZE;
                 this.y[i] = this.y[i-1];
             }
+            this.circle[i] = new Circle(this.x[i] + GameWorld.DOT_SIZE/2, 
+                    this.y[i]+GameWorld.DOT_SIZE/2,
+                    GameWorld.DOT_SIZE/2);
         }
         length = x;
+    }
+    
+    public Circle getCircle(int i) {
+        return circle[i];
     }
     
     public void moveUp() {
@@ -82,22 +95,29 @@ public class Snake {
         time += delta;
         if (time >= 0.5f) {
             time = 0;
-            for (int z = length; z > 0; z--) {
+            for (int z = length-1; z > 0; z--) {
                 x[z] = x[(z - 1)];
                 y[z] = y[(z - 1)];
+                
+                circle[z].setPosition(circle[z-1].x, circle[z-1].y);
             }
+            
             switch (currentDirection) {
                 case LEFT: 
                     x[0] -= GameWorld.DOT_SIZE;
+                    circle[0].setX(circle[0].x - GameWorld.DOT_SIZE);
                     break;
                 case RIGHT: 
                     x[0] += GameWorld.DOT_SIZE;
+                    circle[0].setX(circle[0].x + GameWorld.DOT_SIZE);
                     break;
                 case UP: 
                     y[0] -= GameWorld.DOT_SIZE;
+                    circle[0].setY(circle[0].y - GameWorld.DOT_SIZE);
                     break;
                 case DOWN: 
                     y[0] += GameWorld.DOT_SIZE;
+                    circle[0].setY(circle[0].y + GameWorld.DOT_SIZE);
                     break;
                 default: break;
             }

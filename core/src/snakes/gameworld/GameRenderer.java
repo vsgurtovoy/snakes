@@ -1,6 +1,7 @@
 package snakes.gameworld;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -96,10 +97,13 @@ public class GameRenderer {
             batcher.draw(snake1, 
                 snake.getX(i), snake.getY(i) 
                 );
-        }
-
-
-        
+        }      
         batcher.end();
+        shapeRenderer.begin(ShapeType.Filled);
+        shapeRenderer.setColor(Color.RED);
+        for (int i = 0; i < snakeLength; i++) {
+            shapeRenderer.circle(snake.getCircle(i).x, snake.getCircle(i).y, snake.getCircle(i).radius);
+        }
+        shapeRenderer.end();
     }
 }
