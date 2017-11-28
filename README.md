@@ -1,29 +1,23 @@
-# README #
+SNAKES
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Физика змеи
+-змея растет на следующем шаге после того, как съела еду
+-у змеи растет голова, хвост в это время не движется
+-еда возникает рандомно на всем поле кроме хвоста змеи
 
-### What is this repository for? ###
+Объекты
+-поле
+-змея
+-еда *
+-еда .
+-еда +
+-еда -
+-камень
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Анимация
+-змея моргает глазами
+-змея открывает рот перед съедобными объектами
+-змея плавно переползает с место на место
 
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+Обнаружение коллизий
+-змея врезается в свой хвост или в стену и умирает
