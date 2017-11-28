@@ -10,6 +10,7 @@ public class GameWorld {
     public static int WIDTH = 270;
     public static int ALL_DOTS = 1080;
     
+    
     private Snake snake;
     
     public Snake getSnake() {
