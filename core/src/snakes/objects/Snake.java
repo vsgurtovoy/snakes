@@ -25,6 +25,7 @@ public class Snake {
         this.y[0] = y;
         this.width = width;
         this.height = height;
+        currentDirection = direction.UP;
     }
     
     public void moveUp() {
@@ -44,7 +45,7 @@ public class Snake {
     }    
     public void update(float delta) {
         time += delta;
-        if (time >= 1f) {
+        if (time >= 0.5f) {
             time = 0;
             for (int z = length; z > 0; z--) {
                 x[z] = x[(z - 1)];
@@ -53,15 +54,19 @@ public class Snake {
             switch (currentDirection) {
                 case LEFT: 
                     x[0] -= GameWorld.DOT_SIZE;
+                    rotation = -90;
                     break;
                 case RIGHT: 
-                    x[0] -= GameWorld.DOT_SIZE;
+                    x[0] += GameWorld.DOT_SIZE;
+                    rotation = 90;
                     break;
                 case UP: 
-                    y[0] += GameWorld.DOT_SIZE;
+                    y[0] -= GameWorld.DOT_SIZE;
+                    rotation = 0;
                     break;
                 case DOWN: 
-                    y[0] -= GameWorld.DOT_SIZE;
+                    y[0] += GameWorld.DOT_SIZE;
+                    rotation = 180;
                     break;
                 default: break;
             }

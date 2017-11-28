@@ -2,7 +2,6 @@ package snakes.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
 import snakes.gameworld.GameRenderer;
 import snakes.gameworld.GameWorld;
 import snakes.helpers.InputHandler;
@@ -11,9 +10,7 @@ public class GameScreen implements Screen {
     private GameWorld world;
     private GameRenderer renderer;
     
-    
     public GameScreen() {
-       
         float screenWidth = Gdx.graphics.getWidth();
         float screenHeight = Gdx.graphics.getHeight();
         float gameWidth = 136;
@@ -22,7 +19,7 @@ public class GameScreen implements Screen {
         int midPointY = (int) (gameHeight / 2);
         int midPointX = (int) (gameWidth / 2);
         
-        world = new GameWorld(midPointX, midPointY); // initialize world
+        world = new GameWorld(); // initialize world
         renderer = new GameRenderer(world, midPointX, midPointY); // initialize renderer
         Gdx.input.setInputProcessor(new InputHandler(world.getSnake()));
     }
@@ -62,5 +59,4 @@ public class GameScreen implements Screen {
     public void dispose() {
         // Leave blank
     }
-
 }

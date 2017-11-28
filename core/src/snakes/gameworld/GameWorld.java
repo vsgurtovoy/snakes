@@ -12,13 +12,14 @@ public class GameWorld {
     
     private int midPointY;
     private int midPointX;
+    
     private Snake snake;
     public Snake getSnake() {
         return snake;
     }
     
-    public GameWorld(int midPointX, int midpointY) {
-        snake = new Snake(33, midPointY - 5, 17, 12);
+    public GameWorld() {
+        snake = new Snake(40, 40, GameWorld.DOT_SIZE, GameWorld.DOT_SIZE);
     }
     
     public void update(float delta) {
