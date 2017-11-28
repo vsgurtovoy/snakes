@@ -10,9 +10,6 @@ public class GameWorld {
     public static int WIDTH = 270;
     public static int ALL_DOTS = 1080;
     
-    private int midPointY;
-    private int midPointX;
-    
     private Snake snake;
     public Snake getSnake() {
         return snake;
@@ -23,7 +20,6 @@ public class GameWorld {
     }
     
     public void update(float delta) {
-        Gdx.app.log("GameWorld", "update");
         snake.update(delta);
     }
 }
