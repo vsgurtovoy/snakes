@@ -11,14 +11,20 @@ public class Snake {
         SLOW, MEDIUM, FAST
     }
     // TODO поменять на linked list для большей производительности
+    // Координаты частей змейки
     private final int x[] = new int[GameWorld.ALL_DOTS];
     private final int y[] = new int[GameWorld.ALL_DOTS];
+    // Размеры части змейки
     private int width;
     private int height;
+    // Время между переходами
     private float time;
+    // Направление движения змеи
     private direction currentDirection;
+    // Длина змеи
     private int length;
-    private int rotation = 0;
+    // напр
+    private int rotation;
     
     public Snake(int x, int y, int width, int height) {
         this.x[0] = x;
@@ -26,22 +32,27 @@ public class Snake {
         this.width = width;
         this.height = height;
         currentDirection = direction.UP;
+        rotation = 0;
     }
     
     public void moveUp() {
-        currentDirection = direction.UP;        
+        currentDirection = direction.UP;  
+        rotation = 0;
     }
 
     public void moveDown() {
-        currentDirection = direction.DOWN;        
+        currentDirection = direction.DOWN;
+        rotation = 180;
     }
 
     public void moveLeft() {
-        currentDirection = direction.LEFT;        
+        currentDirection = direction.LEFT;
+        rotation = -90;
     }
 
     public void moveRight() {
-        currentDirection = direction.RIGHT;        
+        currentDirection = direction.RIGHT;  
+        rotation = 90;
     }    
     public void update(float delta) {
         time += delta;
@@ -54,19 +65,15 @@ public class Snake {
             switch (currentDirection) {
                 case LEFT: 
                     x[0] -= GameWorld.DOT_SIZE;
-                    rotation = -90;
                     break;
                 case RIGHT: 
                     x[0] += GameWorld.DOT_SIZE;
-                    rotation = 90;
                     break;
                 case UP: 
                     y[0] -= GameWorld.DOT_SIZE;
-                    rotation = 0;
                     break;
                 case DOWN: 
                     y[0] += GameWorld.DOT_SIZE;
-                    rotation = 180;
                     break;
                 default: break;
             }
