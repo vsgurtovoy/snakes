@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import snakes.gameworld.GameRenderer;
 import snakes.gameworld.GameWorld;
+import snakes.helpers.InputHandler;
 
 public class GameScreen implements Screen {
     private GameWorld world;
@@ -23,6 +24,7 @@ public class GameScreen implements Screen {
         
         world = new GameWorld(midPointX, midPointY); // initialize world
         renderer = new GameRenderer(world); // initialize renderer
+        Gdx.input.setInputProcessor(new InputHandler(world.getSnake()));
     }
 
     @Override
