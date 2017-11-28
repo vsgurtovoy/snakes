@@ -28,6 +28,8 @@ public class Snake {
     // напр
     private int rotation;
     
+    public boolean isDead;
+    
     
     public Snake(int x, int y, int width, int height) {
         this.x[0] = 20;
@@ -37,6 +39,7 @@ public class Snake {
         currentDirection = direction.DOWN;
         rotation = 180;
         length = 0;
+        isDead = false;
         growSnake(5);
         circle[0] = new Circle(this.x[0]+GameWorld.DOT_SIZE/2,
                 this.y[0]+GameWorld.DOT_SIZE/2, 
@@ -95,32 +98,41 @@ public class Snake {
         time += delta;
         if (time >= 0.5f) {
             time = 0;
-            for (int z = length-1; z > 0; z--) {
-                x[z] = x[(z - 1)];
-                y[z] = y[(z - 1)];
-                
-                circle[z].setPosition(circle[z-1].x, circle[z-1].y);
+            
+            if (!this.isDead) {
+                this.move();
             }
             
-            switch (currentDirection) {
-                case LEFT: 
-                    x[0] -= GameWorld.DOT_SIZE;
-                    circle[0].setX(circle[0].x - GameWorld.DOT_SIZE);
-                    break;
-                case RIGHT: 
-                    x[0] += GameWorld.DOT_SIZE;
-                    circle[0].setX(circle[0].x + GameWorld.DOT_SIZE);
-                    break;
-                case UP: 
-                    y[0] -= GameWorld.DOT_SIZE;
-                    circle[0].setY(circle[0].y - GameWorld.DOT_SIZE);
-                    break;
-                case DOWN: 
-                    y[0] += GameWorld.DOT_SIZE;
-                    circle[0].setY(circle[0].y + GameWorld.DOT_SIZE);
-                    break;
-                default: break;
-            }
+        }
+        Handler.collides(this);
+    }
+    
+    private void move() {
+        for (int z = length-1; z > 0; z--) {
+            x[z] = x[(z - 1)];
+            y[z] = y[(z - 1)];
+
+            circle[z].setPosition(circle[z-1].x, circle[z-1].y);
+        }
+
+        switch (currentDirection) {
+            case LEFT: 
+                x[0] -= GameWorld.DOT_SIZE;
+                circle[0].setX(circle[0].x - GameWorld.DOT_SIZE);
+                break;
+            case RIGHT: 
+                x[0] += GameWorld.DOT_SIZE;
+                circle[0].setX(circle[0].x + GameWorld.DOT_SIZE);
+                break;
+            case UP: 
+                y[0] -= GameWorld.DOT_SIZE;
+                circle[0].setY(circle[0].y - GameWorld.DOT_SIZE);
+                break;
+            case DOWN: 
+                y[0] += GameWorld.DOT_SIZE;
+                circle[0].setY(circle[0].y + GameWorld.DOT_SIZE);
+                break;
+            default: break;
         }
     }
     

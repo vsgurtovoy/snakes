@@ -26,17 +26,13 @@ public class GameWorld {
     private Battery battery;
     private Ice ice;
     private Rock rock;
-    
-    Handler handler;
-    
+        
     public GameWorld() {
         snake = new Snake(0, 0, GameWorld.DOT_SIZE, GameWorld.DOT_SIZE);
-        handler = new Handler(snake);
-        
     }
     
     public void update(float delta) {
-        if (handler.collides()) {
+        if (snake.isDead) {
             return;
         }
         snake.update(delta);
