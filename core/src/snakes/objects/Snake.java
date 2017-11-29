@@ -65,6 +65,10 @@ public class Snake {
         }
     }
     
+    public void killSnake() {
+        isDead = true;
+    }
+    
     public Circle getCircle(int i) {
         return circle[i];
     }
