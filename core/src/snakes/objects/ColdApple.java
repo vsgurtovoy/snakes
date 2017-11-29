@@ -1,9 +1,11 @@
 package snakes.objects;
 
+import snakes.gameworld.GameWorld;
+
 public class ColdApple extends Applyable {
 
-    public ColdApple(int x, int y) {
-        super(x, y);
+    public ColdApple(GameWorld world, int x, int y) {
+        super(world, x, y);
     }
     
     @Override

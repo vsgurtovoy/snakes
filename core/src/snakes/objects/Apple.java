@@ -1,9 +1,11 @@
 package snakes.objects;
 
-public class Apple extends Applyable {
-    
-    public Apple(int x, int y) {
-        super(x, y);
+import java.util.Random;
+import snakes.gameworld.GameWorld;
+
+public class Apple extends Applyable {   
+    public Apple(GameWorld world, int x, int y) {
+        super(world, x, y);
     }
     
     @Override

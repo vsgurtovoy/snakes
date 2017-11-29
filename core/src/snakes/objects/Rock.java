@@ -1,9 +1,11 @@
 package snakes.objects;
 
+import snakes.gameworld.GameWorld;
+
 public class Rock extends Applyable {
 
-    public Rock(int x, int y) {
-        super(x, y);
+    public Rock(GameWorld world, int x, int y) {
+        super(world, x, y);
     }
     
     @Override
