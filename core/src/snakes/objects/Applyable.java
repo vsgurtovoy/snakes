@@ -27,11 +27,13 @@ abstract public class Applyable {
     protected void setPos(int x, int y) {
         this.x = x;
         this.y = y;
-        circle = new Circle(x+GameWorld.DOT_SIZE/2, y+GameWorld.DOT_SIZE/2, GameWorld.DOT_SIZE/2);
+        setCircle(x, y);
     } 
     
     public Applyable(GameWorld world, int x, int y) {
-        setPos(x, y);
+        this.x = x;
+        this.y= y;
+        circle = new Circle(x+GameWorld.DOT_SIZE/2, y+GameWorld.DOT_SIZE/2, GameWorld.DOT_SIZE/2);
         this.world = world;
     }
     

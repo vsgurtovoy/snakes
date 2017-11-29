@@ -14,8 +14,8 @@ public class Battery  extends Applyable {
     public Battery(GameWorld world, int x, int y) {
         super(world, x, y);
         time = 0;
-        interval = 2f;
-        life = 2f;
+        interval = 5f;
+        life = 5f;
         lives = false;
         r = new Random();
     }
@@ -23,6 +23,7 @@ public class Battery  extends Applyable {
     @Override
     public boolean apply(Snake snake) {
         snake.makeFaster();
+        kill();
         return true;        
     }
     
@@ -30,8 +31,6 @@ public class Battery  extends Applyable {
         time += delta;
         if (lives && time >= life ) {
             kill();
-            lives = false;
-            time = 0;
         } else if (!lives && time >= interval) {
             lives = true;
             time = 0;
@@ -49,14 +48,12 @@ public class Battery  extends Applyable {
     }
     
     protected void kill() {
-        this.setCircle(-20, -20);
+        lives = false;
+        time = 0;
+        this.setPos(-20, -20);
     }
     
     public void onRestart() {
-        time = 0;
-        interval = 2f;
-        life = 10f;
-        lives = false;
         kill();
     }
 }
