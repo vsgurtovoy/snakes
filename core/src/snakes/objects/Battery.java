@@ -51,4 +51,12 @@ public class Battery  extends Applyable {
     protected void kill() {
         this.setCircle(-20, -20);
     }
+    
+    public void onRestart() {
+        time = 0;
+        interval = 2f;
+        life = 10f;
+        lives = false;
+        kill();
+    }
 }

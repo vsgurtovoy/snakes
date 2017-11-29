@@ -70,8 +70,9 @@ public class GameWorld {
         currentState = GameState.READY;
     }
     
-    public void update(float delta) {
+    public void updateRunning(float delta) {
         if (snake.isDead) {
+            currentState = GameState.GAMEOVER;
             return;
         }
         snake.update(delta);
@@ -79,5 +80,47 @@ public class GameWorld {
         //battery.update(delta);
         //ice.update(delta);
         rock.update(delta);
+    }
+    
+      public void update(float delta) {
+        switch (currentState) {
+        case READY:
+            updateReady(delta);
+            break;
+        case RUNNING:
+        default:
+            updateRunning(delta);
+            break;
+        }
+
+    }
+
+    private void updateReady(float delta) {
+        // Пока что ничего не делаем
+    }
+    
+    public boolean isReady() {
+        return currentState == GameState.READY;
+    }
+
+    public void start() {
+        currentState = GameState.RUNNING;
+    }
+
+    public void restart() {
+        currentState = GameState.READY;
+        score = 0;
+        snake.onRestart();
+        apple.onRestart();
+        coldApple.onRestart();
+        //battery.update(delta);
+        //ice.update(delta);
+        rock.update(delta);
+        
+        currentState = GameState.READY;
+    }
+
+    public boolean isGameOver() {
+        return currentState == GameState.GAMEOVER;
     }
 }

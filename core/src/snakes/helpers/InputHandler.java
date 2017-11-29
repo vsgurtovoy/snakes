@@ -2,12 +2,14 @@ package snakes.helpers;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import snakes.gameworld.GameWorld;
 import snakes.objects.Snake;
 
 public class InputHandler implements InputProcessor {
     private Snake snake;
+    private GameWorld myWorld;
     
-    public InputHandler(Snake snake) {
+    public InputHandler(Snake snake, GameWorld world) {
         this.snake = snake; 
     }
     
@@ -18,6 +20,15 @@ public class InputHandler implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
+        if (myWorld.isReady()) {
+            myWorld.start();
+        }
+        
+        if (myWorld.isGameOver()) {
+            // Обнулим все перменные, перейдем в GameState.READ
+            myWorld.restart();
+        }
+        
         switch (keycode) {
             case Input.Keys.UP:
                 snake.moveUp();

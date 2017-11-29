@@ -52,4 +52,12 @@ public class Rock extends Applyable {
         this.setCircle(-20, -20);
     }
     
+    public void onRestart() {
+        time = 0;
+        interval = 2f;
+        life = 10f;
+        lives = false;
+        kill();
+    }
+    
 }

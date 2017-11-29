@@ -51,7 +51,18 @@ public class Snake {
                 GameWorld.DOT_SIZE/2); 
         }
         
-        feed(5);
+        feed(3);
+    }
+    
+    public void onRestart() {
+        this.x[0] = 20;
+        this.y[0] = 20;
+        currentDirection = direction.DOWN;
+        rotation = 180;
+        length = 1;
+        isDead = false;
+        velocity = 0.5f;        
+        feed(3);
     }
     
     public void feed(int times) {
