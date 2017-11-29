@@ -17,7 +17,7 @@ public class Apple extends Applyable {
     public boolean apply(Snake snake) {
         snake.feed(1);
         AssetLoader.coin.play();
-        world.addScore(1);
+        GameWorld.addScore(1);
         int xx;
         int yy;
         
