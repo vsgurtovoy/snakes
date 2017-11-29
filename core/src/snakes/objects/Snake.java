@@ -94,23 +94,31 @@ public class Snake {
     }
     
     public void moveUp() {
-        currentDirection = direction.UP;  
-        rotation = 0;
+        if (currentDirection != direction.DOWN) {
+            currentDirection = direction.UP;  
+            rotation = 0;
+        }
     }
 
     public void moveDown() {
-        currentDirection = direction.DOWN;
-        rotation = 180;
+        if (currentDirection != direction.UP) {
+            currentDirection = direction.DOWN;
+            rotation = 180;
+        }
     }
 
     public void moveLeft() {
-        currentDirection = direction.LEFT;
-        rotation = -90;
+        if (currentDirection != direction.RIGHT) {
+            currentDirection = direction.LEFT;
+            rotation = -90;
+        }
     }
 
     public void moveRight() {
-        currentDirection = direction.RIGHT;  
-        rotation = 90;
+        if (currentDirection != direction.LEFT) {
+            currentDirection = direction.RIGHT;  
+            rotation = 90;
+        }
     }    
     public void update(float delta) {
         time += delta;
