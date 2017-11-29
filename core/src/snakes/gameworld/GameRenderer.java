@@ -149,6 +149,19 @@ public class GameRenderer {
                 
                 AssetLoader.shadow.draw(batcher, "Try again?", 23, 76);
                 AssetLoader.font.draw(batcher, "Try again?", 24, 75);
+                
+                AssetLoader.shadow.draw(batcher, "High Score:", 23, 106);
+                AssetLoader.font.draw(batcher, "High Score:", 22, 105);
+
+                String highScore = AssetLoader.getHighScore() + "";
+
+                AssetLoader.shadow.draw(batcher, highScore, (136 / 2)
+                        - (3 * highScore.length()), 128);
+                AssetLoader.font.draw(batcher, highScore, (136 / 2)
+                        - (3 * highScore.length() - 1), 127);
+                if (GameWorld.getScore() > AssetLoader.getHighScore()) {
+                    AssetLoader.setHighScore(GameWorld.getScore());
+                }
             }
         
             // Конвертирование integer в String

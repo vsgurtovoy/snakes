@@ -1,6 +1,7 @@
 package snakes.helpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
@@ -21,6 +22,7 @@ public class AssetLoader {
     public static TextureRegion ice1, ice2;
     public static TextureRegion rock1, rock2;
     public static Sound dead, turn, coin;
+    public static Preferences prefs;
 
     public static void load() {
         font = new BitmapFont(Gdx.files.internal("data/text.fnt"));
@@ -87,6 +89,21 @@ public class AssetLoader {
         turn = Gdx.audio.newSound(Gdx.files.internal("data/turn.wav"));
         coin = Gdx.audio.newSound(Gdx.files.internal("data/coin.wav"));
 
+        prefs = Gdx.app.getPreferences("Snakes");
+        if (!prefs.contains("highScore")) {
+            prefs.putInteger("highScore", 0);
+        }
+    }
+    
+    // Ролучает на вход значение для hishScore и сохраняет в файл
+    public static void setHighScore(int val) {
+        prefs.putInteger("highScore", val);
+        prefs.flush();
+    }
+
+    // Возвращает текущее значение hishScore
+    public static int getHighScore() {
+        return prefs.getInteger("highScore");
     }
 
     public static void dispose() {
