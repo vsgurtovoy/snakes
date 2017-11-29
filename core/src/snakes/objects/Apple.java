@@ -8,7 +8,7 @@ public class Apple extends Applyable {
     
     @Override
     public boolean apply(Snake snake) {
-        snake.setLength(snake.getLength() + 1);
+        snake.feedSnake(1);
         return true;
     }
 }

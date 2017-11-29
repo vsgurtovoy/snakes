@@ -68,6 +68,8 @@ public class GameRenderer {
     }
     
     public void render(float delta) {
+        initAssets();
+        
         runTime += delta;
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -105,6 +107,7 @@ public class GameRenderer {
                 snake.getWidth()/2f, snake.getHeight()/2f, 
                 snake.getWidth(), snake.getHeight(),
                 1, 1, snake.getRotation());
+        
         snakeLength = snake.getLength();
         for (int i = 2; i < snakeLength; i++) {
             batcher.draw(snake1, 
@@ -115,10 +118,14 @@ public class GameRenderer {
         
         shapeRenderer.begin(ShapeType.Filled);
         shapeRenderer.setColor(Color.RED);
+        
         for (int i = 0; i < snakeLength; i++) {
             shapeRenderer.circle(snake.getCircle(i).x, snake.getCircle(i).y, snake.getCircle(i).radius);
         }
-        shapeRenderer.circle(apple.getCircle().x, apple.getCircle().y, apple.getCircle().radius);
+        
+        if (apple.getCircle() != null) {
+            shapeRenderer.circle(apple.getCircle().x, apple.getCircle().y, apple.getCircle().radius);
+        }
         
         shapeRenderer.end();
     }

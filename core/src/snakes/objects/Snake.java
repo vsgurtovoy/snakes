@@ -40,37 +40,29 @@ public class Snake {
         this.height = height;
         currentDirection = direction.DOWN;
         rotation = 180;
-        length = 0;
+        length = 1;
         isDead = false;
-        growSnake(5);
-        circle[0] = new Circle(this.x[0]+GameWorld.DOT_SIZE/2,
+        for (int i = 0; i < GameWorld.ALL_DOTS; i++) {
+            circle[i] = new Circle(this.x[0]+GameWorld.DOT_SIZE/2,
                 this.y[0]+GameWorld.DOT_SIZE/2, 
-                GameWorld.DOT_SIZE/2);
+                GameWorld.DOT_SIZE/2); 
+        }
+        
+        feedSnake(5);
     }
     
-    public void growSnake(int x) {
-        for (int i = 1; i < x; i++) {
-            if (currentDirection == direction.UP) {
-                this.x[i] = this.x[i-1];
-                this.y[i] = this.y[i-1] + GameWorld.DOT_SIZE;
-            }
-            if (currentDirection == direction.DOWN) {
-                this.x[i] = this.x[i-1];
-                this.y[i] = this.y[i-1] - GameWorld.DOT_SIZE;
-            }
-            if (currentDirection == direction.LEFT) {
-                this.x[i] = this.x[i-1] + GameWorld.DOT_SIZE;
-                this.y[i] = this.y[i-1];
-            }
-            if (currentDirection == direction.RIGHT) {
-                this.x[i] = this.x[i-1] - GameWorld.DOT_SIZE;
-                this.y[i] = this.y[i-1];
-            }
-            this.circle[i] = new Circle(this.x[i] + GameWorld.DOT_SIZE/2, 
-                    this.y[i]+GameWorld.DOT_SIZE/2,
-                    GameWorld.DOT_SIZE/2);
+    public void feedSnake(int times) {
+        for (int j = 1; j <= times; j++) {
+            length++;
+            move();
         }
-        length = x;
+    }
+    
+    public void cutSnake(int times) {
+        length--;
+        if (length == 0) {
+            isDead = true;
+        }
     }
     
     public Circle getCircle(int i) {
@@ -99,11 +91,8 @@ public class Snake {
     public void update(float delta) {
         time += delta;
         if (time >= 0.5f) {
-            time = 0;
-            
-            if (!this.isDead) {
-                this.move();
-            }
+            time = 0;          
+            this.move();
             Applyable thing = Handler.isOnApplyable(this, world);
             if (thing != null) {
                 thing.apply(this);
@@ -163,9 +152,5 @@ public class Snake {
     
     public int getLength() {
         return length;
-    }
-    
-    public void setLength(int length) {
-        this.length = length;
     }
 }

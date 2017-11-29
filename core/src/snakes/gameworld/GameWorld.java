@@ -25,6 +25,10 @@ public class GameWorld {
     public Apple getApple() {
         return apple;
     }
+    public void setApple(Apple apple) {
+        this.apple = apple;
+    }
+    
     private ColdApple coldApple;
     private Battery battery;
     private Ice ice;
