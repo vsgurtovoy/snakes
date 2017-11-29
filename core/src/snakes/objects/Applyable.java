@@ -15,6 +15,7 @@ abstract public class Applyable {
     GameWorld world;
     
     protected Circle circle;
+    protected Circle bufCircle;
     
     public Circle getCircle() {
         return circle;
@@ -22,6 +23,14 @@ abstract public class Applyable {
     
     protected void setCircle(int x, int y) {
         circle.set(x+GameWorld.DOT_SIZE/2, y+GameWorld.DOT_SIZE/2, GameWorld.DOT_SIZE/2);
+    }
+    
+    public Circle getBufCircle() {
+        return bufCircle;
+    }    
+    
+    protected void setBufCircle(int x, int y) {
+        bufCircle.set(x+GameWorld.DOT_SIZE/2, y+GameWorld.DOT_SIZE/2, GameWorld.DOT_SIZE/2);
     }
     
     protected void setPos(int x, int y) {
@@ -34,6 +43,7 @@ abstract public class Applyable {
         this.x = x;
         this.y= y;
         circle = new Circle(x+GameWorld.DOT_SIZE/2, y+GameWorld.DOT_SIZE/2, GameWorld.DOT_SIZE/2);
+        bufCircle = new Circle(x+GameWorld.DOT_SIZE/2, y+GameWorld.DOT_SIZE/2, GameWorld.DOT_SIZE/2);
         this.world = world;
     }
     
