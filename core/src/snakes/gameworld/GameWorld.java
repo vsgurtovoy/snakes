@@ -2,6 +2,7 @@ package snakes.gameworld;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
+import snakes.helpers.AssetLoader;
 import snakes.objects.Apple;
 import snakes.objects.Battery;
 import snakes.objects.ColdApple;

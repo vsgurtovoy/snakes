@@ -3,6 +3,7 @@ package snakes.objects;
 import com.badlogic.gdx.Gdx;
 import java.util.Random;
 import snakes.gameworld.GameWorld;
+import snakes.helpers.AssetLoader;
 
 public class Apple extends Applyable {  
     Random r;
@@ -15,6 +16,7 @@ public class Apple extends Applyable {
     @Override
     public boolean apply(Snake snake) {
         snake.feed(1);
+        AssetLoader.coin.play();
         world.addScore(1);
         do {
             int xx = r.nextInt(130);
