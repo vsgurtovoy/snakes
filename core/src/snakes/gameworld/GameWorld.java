@@ -1,12 +1,8 @@
 package snakes.gameworld;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Rectangle;
-import snakes.helpers.AssetLoader;
 import snakes.objects.Apple;
 import snakes.objects.Battery;
 import snakes.objects.ColdApple;
-import snakes.objects.Handler;
 import snakes.objects.Ice;
 import snakes.objects.Rock;
 import snakes.objects.Snake;
@@ -15,7 +11,7 @@ public class GameWorld {
     public static int DOT_SIZE = 10;
     public static int HEIGHT = 200;
     public static int WIDTH = 130;
-    public static int ALL_DOTS = 1080;
+    public static int ALL_DOTS = 260;
     
     private Snake snake;
     public Snake getSnake() {
@@ -119,8 +115,6 @@ public class GameWorld {
         battery.onRestart();
         ice.onRestart();
         rock.onRestart();
-        
-        currentState = GameState.READY;
     }
 
     public boolean isGameOver() {
