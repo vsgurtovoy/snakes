@@ -127,11 +127,11 @@ public class GameRenderer {
             shapeRenderer.circle(snake.getCircle(i).x, snake.getCircle(i).y, snake.getCircle(i).radius);
         }
         
-        //shapeRenderer.circle(apple.getCircle().x, apple.getCircle().y, apple.getCircle().radius);
+        shapeRenderer.circle(apple.getCircle().x, apple.getCircle().y, apple.getCircle().radius);
         shapeRenderer.circle(coldApple.getCircle().x, coldApple.getCircle().y, coldApple.getCircle().radius);
-        //shapeRenderer.circle(battery.getCircle().x, battery.getCircle().y, battery.getCircle().radius);
-        //shapeRenderer.circle(ice.getCircle().x, ice.getCircle().y, ice.getCircle().radius);
-        //shapeRenderer.circle(rock.getCircle().x, rock.getCircle().y, rock.getCircle().radius);
+        shapeRenderer.circle(battery.getCircle().x, battery.getCircle().y, battery.getCircle().radius);
+        shapeRenderer.circle(ice.getCircle().x, ice.getCircle().y, ice.getCircle().radius);
+        shapeRenderer.circle(rock.getCircle().x, rock.getCircle().y, rock.getCircle().radius);
 
         shapeRenderer.end();
     }

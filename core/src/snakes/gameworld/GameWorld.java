@@ -60,9 +60,9 @@ public class GameWorld {
             return;
         }
         snake.update(delta);
-        coldApple.update(delta);
+        //coldApple.update(delta);
         //battery.update(delta);
         //ice.update(delta);
-        //rock.update(delta);
+        rock.update(delta);
     }
 }
