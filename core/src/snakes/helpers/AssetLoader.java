@@ -95,7 +95,7 @@ public class AssetLoader {
         }
     }
     
-    // Ролучает на вход значение для hishScore и сохраняет в файл
+    // Получает на вход значение для hishScore и сохраняет в файл
     public static void setHighScore(int val) {
         prefs.putInteger("highScore", val);
         prefs.flush();
@@ -106,8 +106,8 @@ public class AssetLoader {
         return prefs.getInteger("highScore");
     }
 
+    // Избавляется от текстур
     public static void dispose() {
-        // Мы должны избавляться от текстур, когда заканчивает работать с объектом в котором есть текстуры
         texture.dispose();
         font.dispose();
         shadow.dispose();
