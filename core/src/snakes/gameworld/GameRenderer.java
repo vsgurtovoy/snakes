@@ -18,11 +18,11 @@ import snakes.objects.Rock;
 import snakes.objects.Snake;
 
 public class GameRenderer {
-    private GameWorld myWorld;
     private OrthographicCamera cam;
     private ShapeRenderer shapeRenderer;
     private SpriteBatch batcher;
     
+    private GameWorld myWorld;
     private Snake snake;
     private Apple apple;
     private ColdApple coldApple;
@@ -74,60 +74,59 @@ public class GameRenderer {
         initAssets();
     }
     
-    public void render(float delta) {
-        initAssets();
-        
+    public void render(float delta) {        
         runTime += delta;
+        
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+/*
         shapeRenderer.begin(ShapeType.Filled);
         shapeRenderer.setColor(55 / 255.0f, 80 / 255.0f, 100 / 255.0f, 1);
         shapeRenderer.rect(0, 0, 136, 204);
-        shapeRenderer.end();
+        shapeRenderer.end();*/
 
+        // Отрисовать фон
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(bg, 0, 0, 136, 207);
         batcher.enableBlending();
 
+        // Отрисовать голову змеи
         batcher.draw((TextureRegion) snakeAnimation.getKeyFrame(runTime), 
                 snake.getX(0), snake.getY(0), 
                 snake.getWidth()/2f, snake.getHeight()/2f, 
                 snake.getWidth(), snake.getHeight(),
                 1, 1, snake.getRotation());
-
+        // Отрисовать тело змеи
         snakeLength = snake.getLength();
         for (int i = 1; i < snakeLength; i++) {
             batcher.draw(snakeBody, snake.getX(i), snake.getY(i));
         }
-        
-        batcher.draw(snakeBody, apple.getX(), apple.getY());
-
+        // отрисовать яблоко
         batcher.draw((TextureRegion) appleAnimation.getKeyFrame(runTime), 
                 apple.getX(), apple.getY(), 
                 snake.getWidth()/2f, snake.getHeight()/2f, 
                 snake.getWidth(), snake.getHeight(),
                 1, 1, 180);
-        
+        // отрисовать холодное яблоко
         batcher.draw((TextureRegion) coldAppleAnimation.getKeyFrame(runTime), 
                 coldApple.getX(), coldApple.getY(), 
                 snake.getWidth()/2f, snake.getHeight()/2f, 
                 snake.getWidth(), snake.getHeight(),
                 1, 1, 180);
-        
+        // отрисовать батарейку
         batcher.draw((TextureRegion) batteryAnimation.getKeyFrame(runTime), 
                 battery.getX(), battery.getY(), 
                 snake.getWidth()/2f, snake.getHeight()/2f, 
                 snake.getWidth(), snake.getHeight(),
                 1, 1, 180);
-        
+        // отрисовать лед
         batcher.draw((TextureRegion) iceAnimation.getKeyFrame(runTime), 
                 ice.getX(), ice.getY(), 
                 snake.getWidth()/2f, snake.getHeight()/2f, 
                 snake.getWidth(), snake.getHeight(),
                 1, 1, 180);
-        
+        // отрисовать камень
         batcher.draw((TextureRegion) rockAnimation.getKeyFrame(runTime), 
                 rock.getX(), rock.getY(), 
                 snake.getWidth()/2f, snake.getHeight()/2f, 
@@ -159,6 +158,7 @@ public class GameRenderer {
                         - (3 * highScore.length()), 128);
                 AssetLoader.font.draw(batcher, highScore, (136 / 2)
                         - (3 * highScore.length() - 1), 127);
+                // установить новый рекорд
                 if (GameWorld.getScore() > AssetLoader.getHighScore()) {
                     AssetLoader.setHighScore(GameWorld.getScore());
                 }
@@ -172,22 +172,21 @@ public class GameRenderer {
             // Отрисуем сам текст
             AssetLoader.font.draw(batcher, "" + GameWorld.getScore(), (136 / 2) - (3 * score.length() - 1), 11);
 
-            shapeRenderer.begin(ShapeType.Filled);
+            // печать технических кругов
+/*            shapeRenderer.begin(ShapeType.Filled);
             shapeRenderer.setColor(Color.RED);
 
             for (int i = 0; i < snakeLength; i++) {
                 shapeRenderer.circle(snake.getCircle(i).x, snake.getCircle(i).y, snake.getCircle(i).radius);
-            }
-
+            }           
             shapeRenderer.circle(apple.getCircle().x, apple.getCircle().y, apple.getCircle().radius);
             shapeRenderer.circle(coldApple.getCircle().x, coldApple.getCircle().y, coldApple.getCircle().radius);
             shapeRenderer.circle(battery.getCircle().x, battery.getCircle().y, battery.getCircle().radius);
             shapeRenderer.circle(ice.getCircle().x, ice.getCircle().y, ice.getCircle().radius);
             shapeRenderer.circle(rock.getCircle().x, rock.getCircle().y, rock.getCircle().radius);
-
-            shapeRenderer.end();
+            
+            shapeRenderer.end();*/
         }
         batcher.end();
-        
     }
 }
