@@ -75,12 +75,13 @@ public class GameWorld {
         if (snake.isDead) {
             currentState = GameState.GAMEOVER;
             return;
+        } else {
+            snake.update(delta);
+            coldApple.update(delta);
+            battery.update(delta);
+            ice.update(delta);
+            rock.update(delta);
         }
-        snake.update(delta);
-        coldApple.update(delta);
-        battery.update(delta);
-        ice.update(delta);
-        rock.update(delta);
     }
     
       public void update(float delta) {
@@ -89,8 +90,9 @@ public class GameWorld {
             updateReady(delta);
             break;
         case RUNNING:
-        default:
             updateRunning(delta);
+            break;
+        default:
             break;
         }
 

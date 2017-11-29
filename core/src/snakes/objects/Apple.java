@@ -36,16 +36,20 @@ public class Apple extends Applyable {
     }
     
     public void onRestart() {
+        int xx;
+        int yy;
+        
         do {
-            int xx = r.nextInt(130);
-            int yy = r.nextInt(200);
+            xx = r.nextInt(130);
+            yy = r.nextInt(200);
             xx = xx/10;
             xx *= 10;
             yy = yy/10;
             yy *= 10;
-            this.setPos(xx, yy);
-            Gdx.app.log(xx+"", yy+"");
-        } while (!Handler.hasSpace(world, circle));
+            bufCircle.setPosition(xx, yy);
+        } while (!Handler.hasSpace(world, bufCircle));
+        
+        this.setPos(xx, yy);
     }
     
 }
