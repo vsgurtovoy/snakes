@@ -12,7 +12,7 @@ public class AssetLoader {
     public static Texture texture;
     public static TextureRegion bg;
     public static Animation snakeAnimation;
-    public static TextureRegion snake1, snake2;
+    public static TextureRegion snake1, snake2, snakeBody;
     public static TextureRegion apple;
 
     public static void load() {
@@ -32,6 +32,9 @@ public class AssetLoader {
 
         snake2 = new TextureRegion(texture, 153, 0, 10, 10);
         snake2.flip(false, true);
+        
+        snakeBody = new TextureRegion(texture, 136, 11, 10, 10);
+        snakeBody.flip(false, true);
 
         //birdUp = new TextureRegion(texture, 170, 0, 17, 12);
         //birdUp.flip(false, true);

@@ -39,7 +39,7 @@ public class Handler {
     }
     
     public static boolean hasSpace(GameWorld world, Circle circle) {
-       /* if (Intersector.overlaps(world.getApple().getCircle(), circle)) {
+        /*if (Intersector.overlaps(world.getApple().getCircle(), circle)) {
             return false;
         }
         if (Intersector.overlaps(world.getColdApple().getCircle(), circle)) {

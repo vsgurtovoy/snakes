@@ -7,10 +7,6 @@ public class Snake {
     private enum direction {
         LEFT, RIGHT, UP, DOWN
     }
-    
-    private enum speed {
-        SLOW, MEDIUM, FAST
-    }
     // TODO поменять на linked list для большей производительности
     // Координаты частей змейки
     private final int x[] = new int[GameWorld.ALL_DOTS];
@@ -50,13 +46,15 @@ public class Snake {
                 this.y[0]+GameWorld.DOT_SIZE/2, 
                 GameWorld.DOT_SIZE/2); 
         }
-        
         feed(3);
     }
     
     public void onRestart() {
         this.x[0] = 20;
         this.y[0] = 20;
+        for (int i = 0; i < GameWorld.ALL_DOTS; i++) {
+            circle[i].setPosition(this.x[0]+GameWorld.DOT_SIZE/2, this.y[0]+GameWorld.DOT_SIZE/2); 
+        }
         currentDirection = direction.DOWN;
         rotation = 180;
         length = 1;

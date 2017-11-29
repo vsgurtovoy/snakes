@@ -84,20 +84,11 @@ public class GameRenderer {
         shapeRenderer.setColor(55 / 255.0f, 80 / 255.0f, 100 / 255.0f, 1);
         shapeRenderer.rect(0, 0, 136, 204);
 
-        // Рисуем Grass
-        /*
-        shapeRenderer.setColor(111 / 255.0f, 186 / 255.0f, 45 / 255.0f, 1);
-        shapeRenderer.rect(0, midPointY + 66, 136, 11);
-
-        // Рисуем Dirt
-        shapeRenderer.setColor(147 / 255.0f, 80 / 255.0f, 27 / 255.0f, 1);
-        shapeRenderer.rect(0, midPointY + 77, 136, 52);*/
-
         shapeRenderer.end();
 
         batcher.begin();
         batcher.disableBlending();
-        //batcher.draw(bg, 0, midPointY + 23, 136, 43);
+        batcher.draw(bg, 0, 0, 136, 207);
 
         batcher.enableBlending();
 
