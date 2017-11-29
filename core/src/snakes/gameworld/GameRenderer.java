@@ -119,28 +119,47 @@ public class GameRenderer {
                 );
         }     
         
-        // Конвертирование integer в String
-        String score = GameWorld.getScore() + "";
+        if (myWorld.isReady()) {
+            // Отрисуем сначала тень
+            AssetLoader.shadow.draw(batcher, "Touch me", (136 / 2)
+                    - (42), 76);
+            // Отрисуем сам текст
+            AssetLoader.font.draw(batcher, "Touch me", (136 / 2)
+                    - (42 - 1), 75);
+        } else {
 
-        // Отрисуем сначала тень
-        AssetLoader.shadow.draw(batcher, "" + GameWorld.getScore(), (136 / 2) - (3 * score.length() - 1), 12);
-        // Отрисуем сам текст
-        AssetLoader.font.draw(batcher, "" + GameWorld.getScore(), (136 / 2) - (3 * score.length() - 1), 11);
+            if (myWorld.isGameOver()) {
+                AssetLoader.shadow.draw(batcher, "Game Over", 25, 56);
+                AssetLoader.font.draw(batcher, "Game Over", 24, 55);
+                
+                AssetLoader.shadow.draw(batcher, "Try again?", 23, 76);
+                AssetLoader.font.draw(batcher, "Try again?", 24, 75);
+            }
+        
+            // Конвертирование integer в String
+            String score = GameWorld.getScore() + "";
+
+            // Отрисуем сначала тень
+            AssetLoader.shadow.draw(batcher, "" + GameWorld.getScore(), (136 / 2) - (3 * score.length() - 1), 12);
+            // Отрисуем сам текст
+            AssetLoader.font.draw(batcher, "" + GameWorld.getScore(), (136 / 2) - (3 * score.length() - 1), 11);
+
+            shapeRenderer.begin(ShapeType.Filled);
+            shapeRenderer.setColor(Color.RED);
+
+            for (int i = 0; i < snakeLength; i++) {
+                shapeRenderer.circle(snake.getCircle(i).x, snake.getCircle(i).y, snake.getCircle(i).radius);
+            }
+
+            shapeRenderer.circle(apple.getCircle().x, apple.getCircle().y, apple.getCircle().radius);
+            shapeRenderer.circle(coldApple.getCircle().x, coldApple.getCircle().y, coldApple.getCircle().radius);
+            shapeRenderer.circle(battery.getCircle().x, battery.getCircle().y, battery.getCircle().radius);
+            shapeRenderer.circle(ice.getCircle().x, ice.getCircle().y, ice.getCircle().radius);
+            shapeRenderer.circle(rock.getCircle().x, rock.getCircle().y, rock.getCircle().radius);
+
+            shapeRenderer.end();
+        }
         batcher.end();
         
-        shapeRenderer.begin(ShapeType.Filled);
-        shapeRenderer.setColor(Color.RED);
-        
-        for (int i = 0; i < snakeLength; i++) {
-            shapeRenderer.circle(snake.getCircle(i).x, snake.getCircle(i).y, snake.getCircle(i).radius);
-        }
-        
-        shapeRenderer.circle(apple.getCircle().x, apple.getCircle().y, apple.getCircle().radius);
-        shapeRenderer.circle(coldApple.getCircle().x, coldApple.getCircle().y, coldApple.getCircle().radius);
-        shapeRenderer.circle(battery.getCircle().x, battery.getCircle().y, battery.getCircle().radius);
-        shapeRenderer.circle(ice.getCircle().x, ice.getCircle().y, ice.getCircle().radius);
-        shapeRenderer.circle(rock.getCircle().x, rock.getCircle().y, rock.getCircle().radius);
-
-        shapeRenderer.end();
     }
 }

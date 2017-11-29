@@ -11,6 +11,7 @@ public class InputHandler implements InputProcessor {
     
     public InputHandler(Snake snake, GameWorld world) {
         this.snake = snake; 
+        myWorld = world;
     }
     
     @Override
@@ -22,29 +23,27 @@ public class InputHandler implements InputProcessor {
     public boolean keyDown(int keycode) {
         if (myWorld.isReady()) {
             myWorld.start();
-        }
-        
-        if (myWorld.isGameOver()) {
+        } else if (myWorld.isGameOver()) {
             // Обнулим все перменные, перейдем в GameState.READ
             myWorld.restart();
+        } else {        
+            switch (keycode) {
+                case Input.Keys.UP:
+                    snake.moveUp();
+                    break;
+                case Input.Keys.DOWN:
+                    snake.moveDown();
+                    break;
+                case Input.Keys.LEFT:
+                    snake.moveLeft();
+                    break;
+                case Input.Keys.RIGHT:
+                    snake.moveRight();
+                    break;
+                default: break;
+            } 
         }
-        
-        switch (keycode) {
-            case Input.Keys.UP:
-                snake.moveUp();
-                break;
-            case Input.Keys.DOWN:
-                snake.moveDown();
-                break;
-            case Input.Keys.LEFT:
-                snake.moveLeft();
-                break;
-            case Input.Keys.RIGHT:
-                snake.moveRight();
-                break;
-            default: break;
-        }
-        return false;
+        return true;
     }
 
     @Override

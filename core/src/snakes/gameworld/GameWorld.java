@@ -113,9 +113,9 @@ public class GameWorld {
         snake.onRestart();
         apple.onRestart();
         coldApple.onRestart();
-        //battery.update(delta);
-        //ice.update(delta);
-        rock.update(delta);
+        battery.onRestart();
+        ice.onRestart();
+        rock.onRestart();
         
         currentState = GameState.READY;
     }
