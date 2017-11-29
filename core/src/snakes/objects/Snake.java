@@ -152,31 +152,35 @@ public class Snake {
         switch (currentDirection) {
             case LEFT: 
                 x[0] -= GameWorld.DOT_SIZE;
+                circle[0].setX(circle[0].x - GameWorld.DOT_SIZE);
                 if (x[0] < 0) {
                     x[0] = x[0] + 130;
+                    circle[0].setX(circle[0].x + 130);
                 }
-                circle[0].setX(circle[0].x - GameWorld.DOT_SIZE);
                 break;
             case RIGHT: 
                 x[0] += GameWorld.DOT_SIZE;
+                circle[0].setX(circle[0].x + GameWorld.DOT_SIZE);
                 if (x[0] > 130) {
                     x[0] = x[0] - 130;
+                    circle[0].setX(circle[0].x - 130);
                 }
-                circle[0].setX(circle[0].x + GameWorld.DOT_SIZE);
                 break;
             case UP: 
                 y[0] -= GameWorld.DOT_SIZE;
+                circle[0].setY(circle[0].y - GameWorld.DOT_SIZE);
                 if (y[0] < 0) {
                     y[0] = y[0] + 200;
+                    circle[0].setY(circle[0].y + 200);
                 }
-                circle[0].setY(circle[0].y - GameWorld.DOT_SIZE);
                 break;
             case DOWN:
                 y[0] += GameWorld.DOT_SIZE;
+                circle[0].setY(circle[0].y + GameWorld.DOT_SIZE);
                 if (y[0] > 200) {
                     y[0] = y[0] - 200;
+                    circle[0].setY(circle[0].y - 200);
                 }
-                circle[0].setY(circle[0].y + GameWorld.DOT_SIZE);
                 break;
             default: break;
         }

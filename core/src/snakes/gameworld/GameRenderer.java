@@ -171,7 +171,7 @@ public class GameRenderer {
             AssetLoader.shadow.draw(batcher, "" + GameWorld.getScore(), (136 / 2) - (3 * score.length() - 1), 12);
             // Отрисуем сам текст
             AssetLoader.font.draw(batcher, "" + GameWorld.getScore(), (136 / 2) - (3 * score.length() - 1), 11);
-/*
+
             shapeRenderer.begin(ShapeType.Filled);
             shapeRenderer.setColor(Color.RED);
 
@@ -185,7 +185,7 @@ public class GameRenderer {
             shapeRenderer.circle(ice.getCircle().x, ice.getCircle().y, ice.getCircle().radius);
             shapeRenderer.circle(rock.getCircle().x, rock.getCircle().y, rock.getCircle().radius);
 
-            shapeRenderer.end();*/
+            shapeRenderer.end();
         }
         batcher.end();
         
