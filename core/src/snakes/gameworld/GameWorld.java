@@ -22,13 +22,17 @@ public class GameWorld {
     }
     
     private Apple apple;
+    public Apple getApple() {
+        return apple;
+    }
     private ColdApple coldApple;
     private Battery battery;
     private Ice ice;
     private Rock rock;
         
     public GameWorld() {
-        snake = new Snake(0, 0, GameWorld.DOT_SIZE, GameWorld.DOT_SIZE);
+        snake = new Snake(this, 0, 0, GameWorld.DOT_SIZE, GameWorld.DOT_SIZE);
+        apple = new Apple(50, 50);
     }
     
     public void update(float delta) {

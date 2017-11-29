@@ -10,6 +10,11 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import snakes.helpers.AssetLoader;
+import snakes.objects.Apple;
+import snakes.objects.Battery;
+import snakes.objects.ColdApple;
+import snakes.objects.Ice;
+import snakes.objects.Rock;
 import snakes.objects.Snake;
 
 public class GameRenderer {
@@ -17,7 +22,14 @@ public class GameRenderer {
     private OrthographicCamera cam;
     private ShapeRenderer shapeRenderer;
     private SpriteBatch batcher;
+    
     private Snake snake;
+    private Apple apple;
+    private ColdApple coldApple;
+    private Battery battery;
+    private Ice ice;
+    private Rock rock;
+    
     private int snakeLength;
     private int midPointY;
     private int midPointX;
@@ -26,10 +38,11 @@ public class GameRenderer {
     private TextureRegion bg;
     private Animation snakeAnimation;
     private TextureRegion snake1, snake2;
-    private TextureRegion apple;
+    private TextureRegion appleTR;
     
     private void initGameObjects() {
         snake = myWorld.getSnake();
+        apple = myWorld.getApple();
     }
 
     private void initAssets() {
@@ -37,7 +50,7 @@ public class GameRenderer {
         snakeAnimation = AssetLoader.snakeAnimation;
         snake1 = AssetLoader.snake1;
         snake2 = AssetLoader.snake2;
-        apple = AssetLoader.apple;
+        appleTR = AssetLoader.apple;
     }
     
     public GameRenderer(GameWorld world, int midPointX, int midPointY) {
@@ -99,11 +112,14 @@ public class GameRenderer {
                 );
         }      
         batcher.end();
+        
         shapeRenderer.begin(ShapeType.Filled);
         shapeRenderer.setColor(Color.RED);
         for (int i = 0; i < snakeLength; i++) {
             shapeRenderer.circle(snake.getCircle(i).x, snake.getCircle(i).y, snake.getCircle(i).radius);
         }
+        shapeRenderer.circle(apple.getCircle().x, apple.getCircle().y, apple.getCircle().radius);
+        
         shapeRenderer.end();
     }
 }

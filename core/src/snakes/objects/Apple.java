@@ -1,11 +1,14 @@
 package snakes.objects;
 
 public class Apple extends Applyable {
-
-    @Override
-    public boolean apply(Snake snake) {
-return true;        
-//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public Apple(int x, int y) {
+        super(x, y);
     }
     
+    @Override
+    public boolean apply(Snake snake) {
+        snake.setLength(snake.getLength() + 1);
+        return true;
+    }
 }

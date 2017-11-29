@@ -29,9 +29,11 @@ public class Snake {
     private int rotation;
     
     public boolean isDead;
+    private GameWorld world;
     
     
-    public Snake(int x, int y, int width, int height) {
+    public Snake(GameWorld world, int x, int y, int width, int height) {
+        this.world = world;
         this.x[0] = 20;
         this.y[0] = 20;
         this.width = width;
@@ -102,7 +104,10 @@ public class Snake {
             if (!this.isDead) {
                 this.move();
             }
-            
+            Applyable thing = Handler.isOnApplyable(this, world);
+            if (thing != null) {
+                thing.apply(this);
+            }
         }
         Handler.collides(this);
     }
@@ -128,7 +133,7 @@ public class Snake {
                 y[0] -= GameWorld.DOT_SIZE;
                 circle[0].setY(circle[0].y - GameWorld.DOT_SIZE);
                 break;
-            case DOWN: 
+            case DOWN:
                 y[0] += GameWorld.DOT_SIZE;
                 circle[0].setY(circle[0].y + GameWorld.DOT_SIZE);
                 break;
@@ -158,5 +163,9 @@ public class Snake {
     
     public int getLength() {
         return length;
+    }
+    
+    public void setLength(int length) {
+        this.length = length;
     }
 }
