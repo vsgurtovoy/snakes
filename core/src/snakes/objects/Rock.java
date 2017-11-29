@@ -8,7 +8,7 @@ public class Rock extends Applyable {
     
     @Override
     public boolean apply(Snake snake) {
-        snake.killSnake();
+        snake.kill();
         return true;
     }  
     

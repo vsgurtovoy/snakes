@@ -8,7 +8,7 @@ public class ColdApple extends Applyable {
     
     @Override
     public boolean apply(Snake snake) {
-        snake.cutSnake(1);
+        snake.cut(1);
         return true;
     }    
 }

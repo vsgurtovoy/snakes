@@ -21,6 +21,8 @@ public class Snake {
     private int height;
     // Время между переходами
     private float time;
+    // скорость передвижения змейки
+    private float velocity;
     // Направление движения змеи
     private direction currentDirection;
     // Длина змеи
@@ -42,31 +44,40 @@ public class Snake {
         rotation = 180;
         length = 1;
         isDead = false;
+        velocity = 0.5f;
         for (int i = 0; i < GameWorld.ALL_DOTS; i++) {
             circle[i] = new Circle(this.x[0]+GameWorld.DOT_SIZE/2,
                 this.y[0]+GameWorld.DOT_SIZE/2, 
                 GameWorld.DOT_SIZE/2); 
         }
         
-        feedSnake(5);
+        feed(5);
     }
     
-    public void feedSnake(int times) {
+    public void feed(int times) {
         for (int j = 1; j <= times; j++) {
             length++;
             move();
         }
     }
     
-    public void cutSnake(int times) {
+    public void cut(int times) {
         length--;
         if (length == 0) {
             isDead = true;
         }
     }
     
-    public void killSnake() {
+    public void kill() {
         isDead = true;
+    }
+    
+    public void makeFaster() {
+        velocity -= 0.25f;
+    }
+    
+    public void makeSlower() {
+        velocity += 0.25f;
     }
     
     public Circle getCircle(int i) {
@@ -94,7 +105,7 @@ public class Snake {
     }    
     public void update(float delta) {
         time += delta;
-        if (time >= 0.5f) {
+        if (time >= velocity) {
             time = 0;          
             this.move();
             Applyable thing = Handler.isOnApplyable(this, world);
