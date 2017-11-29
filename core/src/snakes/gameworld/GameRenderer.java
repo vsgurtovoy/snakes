@@ -117,7 +117,15 @@ public class GameRenderer {
             batcher.draw(snake1, 
                 snake.getX(i), snake.getY(i) 
                 );
-        }      
+        }     
+        
+        // Конвертирование integer в String
+        String score = GameWorld.getScore() + "";
+
+        // Отрисуем сначала тень
+        AssetLoader.shadow.draw(batcher, "" + GameWorld.getScore(), (136 / 2) - (3 * score.length() - 1), 12);
+        // Отрисуем сам текст
+        AssetLoader.font.draw(batcher, "" + GameWorld.getScore(), (136 / 2) - (3 * score.length() - 1), 11);
         batcher.end();
         
         shapeRenderer.begin(ShapeType.Filled);

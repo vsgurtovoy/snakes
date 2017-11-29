@@ -15,6 +15,7 @@ public class Apple extends Applyable {
     @Override
     public boolean apply(Snake snake) {
         snake.feed(1);
+        world.addScore(1);
         do {
             int xx = r.nextInt(130);
             int yy = r.nextInt(200);

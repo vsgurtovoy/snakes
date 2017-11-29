@@ -45,14 +45,29 @@ public class GameWorld {
     public Rock getRock() {
         return rock;
     }
+    
+    private static int score;
+    public static int getScore() {
+        return score;
+    }
+    public static void addScore(int inc) {
+        score += inc;
+    }
         
+    public enum GameState {
+        READY, RUNNING, GAMEOVER
+    }
+    private GameState currentState;
+    
     public GameWorld() {
+        score = 0;
         snake = new Snake(this, 0, 0, GameWorld.DOT_SIZE, GameWorld.DOT_SIZE);
-        apple = new Apple(this, -50, -50);
+        apple = new Apple(this, 50, 50);
         coldApple = new ColdApple(this, -70, -70);
         battery = new Battery(this, -80, -80);
         ice = new Ice(this, -90, -90);
         rock = new Rock(this, -100, -100);
+        currentState = GameState.READY;
     }
     
     public void update(float delta) {
