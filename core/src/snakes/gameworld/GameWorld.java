@@ -48,7 +48,7 @@ public class GameWorld {
         
     public GameWorld() {
         snake = new Snake(this, 0, 0, GameWorld.DOT_SIZE, GameWorld.DOT_SIZE);
-        apple = new Apple(this, -50, -50);
+        //apple = new Apple(this, 50, 50);
         coldApple = new ColdApple(this, -70, -70);
         battery = new Battery(this, -80, -80);
         ice = new Ice(this, -90, -90);
@@ -60,9 +60,8 @@ public class GameWorld {
             return;
         }
         snake.update(delta);
-        //apple.update(delta, this);
-        //coldApple.update(delta);
-        battery.update(delta);
+        coldApple.update(delta);
+        //battery.update(delta);
         //ice.update(delta);
         //rock.update(delta);
     }
