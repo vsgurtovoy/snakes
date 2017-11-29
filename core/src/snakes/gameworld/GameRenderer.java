@@ -36,9 +36,9 @@ public class GameRenderer {
     private float runTime;
     
     private TextureRegion bg;
-    private Animation snakeAnimation;
-    private TextureRegion snake1, snake2;
-    private TextureRegion appleTR;
+    private Animation snakeAnimation, appleAnimation, coldAppleAnimation;
+    private Animation batteryAnimation, iceAnimation, rockAnimation;
+    private TextureRegion snakeBody;
     
     private void initGameObjects() {
         snake = myWorld.getSnake();
@@ -52,9 +52,12 @@ public class GameRenderer {
     private void initAssets() {
         bg = AssetLoader.bg;
         snakeAnimation = AssetLoader.snakeAnimation;
-        snake1 = AssetLoader.snake1;
-        snake2 = AssetLoader.snake2;
-        appleTR = AssetLoader.apple;
+        snakeBody = AssetLoader.snakeBody;
+        appleAnimation = AssetLoader.appleAnimation;
+        coldAppleAnimation = AssetLoader.coldAppleAnimation;
+        batteryAnimation = AssetLoader.batteryAnimation;
+        iceAnimation = AssetLoader.iceAnimation;
+        rockAnimation = AssetLoader.rockAnimation;
     }
     
     public GameRenderer(GameWorld world, int midPointX, int midPointY) {
@@ -79,17 +82,13 @@ public class GameRenderer {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         shapeRenderer.begin(ShapeType.Filled);
-
-        // Заливаем задний фон
         shapeRenderer.setColor(55 / 255.0f, 80 / 255.0f, 100 / 255.0f, 1);
         shapeRenderer.rect(0, 0, 136, 204);
-
         shapeRenderer.end();
 
         batcher.begin();
         batcher.disableBlending();
         batcher.draw(bg, 0, 0, 136, 207);
-
         batcher.enableBlending();
 
         batcher.draw((TextureRegion) snakeAnimation.getKeyFrame(runTime), 
@@ -97,18 +96,43 @@ public class GameRenderer {
                 snake.getWidth()/2f, snake.getHeight()/2f, 
                 snake.getWidth(), snake.getHeight(),
                 1, 1, snake.getRotation());
-        batcher.draw((TextureRegion) snakeAnimation.getKeyFrame(runTime), 
-                snake.getX(1), snake.getY(1), 
+
+        snakeLength = snake.getLength();
+        for (int i = 1; i < snakeLength; i++) {
+            batcher.draw(snakeBody, snake.getX(i), snake.getY(i));
+        }
+        
+        batcher.draw(snakeBody, apple.getX(), apple.getY());
+
+        batcher.draw((TextureRegion) appleAnimation.getKeyFrame(runTime), 
+                apple.getX(), apple.getY(), 
                 snake.getWidth()/2f, snake.getHeight()/2f, 
                 snake.getWidth(), snake.getHeight(),
-                1, 1, snake.getRotation());
+                1, 1, 180);
         
-        snakeLength = snake.getLength();
-        for (int i = 2; i < snakeLength; i++) {
-            batcher.draw(snake1, 
-                snake.getX(i), snake.getY(i) 
-                );
-        }     
+        batcher.draw((TextureRegion) coldAppleAnimation.getKeyFrame(runTime), 
+                coldApple.getX(), coldApple.getY(), 
+                snake.getWidth()/2f, snake.getHeight()/2f, 
+                snake.getWidth(), snake.getHeight(),
+                1, 1, 180);
+        
+        batcher.draw((TextureRegion) batteryAnimation.getKeyFrame(runTime), 
+                battery.getX(), battery.getY(), 
+                snake.getWidth()/2f, snake.getHeight()/2f, 
+                snake.getWidth(), snake.getHeight(),
+                1, 1, 180);
+        
+        batcher.draw((TextureRegion) iceAnimation.getKeyFrame(runTime), 
+                ice.getX(), ice.getY(), 
+                snake.getWidth()/2f, snake.getHeight()/2f, 
+                snake.getWidth(), snake.getHeight(),
+                1, 1, 180);
+        
+        batcher.draw((TextureRegion) rockAnimation.getKeyFrame(runTime), 
+                rock.getX(), rock.getY(), 
+                snake.getWidth()/2f, snake.getHeight()/2f, 
+                snake.getWidth(), snake.getHeight(),
+                1, 1, 180);
         
         if (myWorld.isReady()) {
             // Отрисуем сначала тень
@@ -134,7 +158,7 @@ public class GameRenderer {
             AssetLoader.shadow.draw(batcher, "" + GameWorld.getScore(), (136 / 2) - (3 * score.length() - 1), 12);
             // Отрисуем сам текст
             AssetLoader.font.draw(batcher, "" + GameWorld.getScore(), (136 / 2) - (3 * score.length() - 1), 11);
-
+/*
             shapeRenderer.begin(ShapeType.Filled);
             shapeRenderer.setColor(Color.RED);
 
@@ -148,7 +172,7 @@ public class GameRenderer {
             shapeRenderer.circle(ice.getCircle().x, ice.getCircle().y, ice.getCircle().radius);
             shapeRenderer.circle(rock.getCircle().x, rock.getCircle().y, rock.getCircle().radius);
 
-            shapeRenderer.end();
+            shapeRenderer.end();*/
         }
         batcher.end();
         

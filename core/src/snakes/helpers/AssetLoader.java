@@ -11,13 +11,19 @@ public class AssetLoader {
     public static BitmapFont font, shadow;
     public static Texture texture;
     public static TextureRegion bg;
-    public static Animation snakeAnimation;
+    public static Animation snakeAnimation, appleAnimation, coldAppleAnimation;
+    public static Animation batteryAnimation, iceAnimation, rockAnimation;
     public static TextureRegion snake1, snake2, snakeBody;
-    public static TextureRegion apple;
+    public static TextureRegion apple1, apple2;
+    public static TextureRegion coldApple1, coldApple2;
+    public static TextureRegion battery1, battery2;
+    public static TextureRegion ice1, ice2;
+    public static TextureRegion rock1, rock2;
 
     public static void load() {
         font = new BitmapFont(Gdx.files.internal("data/text.fnt"));
         font.getData().setScale(.25f, -.25f);
+        
         shadow = new BitmapFont(Gdx.files.internal("data/shadow.fnt"));
         shadow.getData().setScale(.25f, -.25f);
 
@@ -26,25 +32,54 @@ public class AssetLoader {
 
         bg = new TextureRegion(texture, 0, 0, 136, 43);
         bg.flip(false, true);
+        
+        snakeBody = new TextureRegion(texture, 136, 11, 10, 10);
+        snakeBody.flip(false, true);
 
         snake1 = new TextureRegion(texture, 136, 0, 10, 10);
         snake1.flip(false, true);
 
         snake2 = new TextureRegion(texture, 153, 0, 10, 10);
         snake2.flip(false, true);
-        
-        snakeBody = new TextureRegion(texture, 136, 11, 10, 10);
-        snakeBody.flip(false, true);
 
-        //birdUp = new TextureRegion(texture, 170, 0, 17, 12);
-        //birdUp.flip(false, true);
-
-        TextureRegion[] snakes = { snake1, snake2};
+        TextureRegion[] snakes = { snake1, snake2 };
         snakeAnimation = new Animation<TextureRegion>(0.6f, snakes);
         snakeAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
-
-        apple = new TextureRegion(texture, 153, 0, 10, 10);
-//        apple = new TextureRegion(texture, 192, 0, 24, 14);
+        
+        apple1 = new TextureRegion(texture, 136, 22, 10, 10);
+        apple2 = new TextureRegion(texture, 147, 22, 10, 10);
+        
+        TextureRegion[] apples = { apple1, apple2 };
+        appleAnimation = new Animation<TextureRegion>(0.6f, apples);
+        appleAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+        
+        coldApple1 = new TextureRegion(texture, 136, 33, 10, 10);
+        coldApple2 = new TextureRegion(texture, 147, 33, 10, 10);
+        
+        TextureRegion[] coldApples = { coldApple1, coldApple2 };
+        coldAppleAnimation = new Animation<TextureRegion>(0.6f, coldApples);
+        coldAppleAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+        
+        battery1 = new TextureRegion(texture, 136, 44, 10, 10);
+        battery2 = new TextureRegion(texture, 147, 44, 10, 10);
+        
+        TextureRegion[] batteries = { battery1, battery2 };
+        batteryAnimation = new Animation<TextureRegion>(0.6f, batteries);
+        batteryAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+        
+        ice1 = new TextureRegion(texture, 136, 55, 10, 10);
+        ice2 = new TextureRegion(texture, 147, 55, 10, 10);
+        
+        TextureRegion[] ices = { ice1, ice2 };
+        iceAnimation = new Animation<TextureRegion>(0.6f, ices);
+        iceAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+        
+        rock1 = new TextureRegion(texture, 136, 66, 10, 10);
+        rock2 = new TextureRegion(texture, 147, 66, 10, 10);
+        
+        TextureRegion[] rocks = { rock1, rock2 };
+        rockAnimation = new Animation<TextureRegion>(0.6f, rocks);
+        rockAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
     }
 
     public static void dispose() {

@@ -5,6 +5,13 @@ import snakes.gameworld.GameWorld;
 
 abstract public class Applyable {
     int x, y;
+    public int getX() {
+        return x;
+    }
+    public int getY() {
+        return y;
+    }
+    
     GameWorld world;
     
     protected Circle circle;
