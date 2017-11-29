@@ -6,12 +6,12 @@ import snakes.gameworld.GameWorld;
 import snakes.objects.Snake;
 
 public class InputHandler implements InputProcessor {
-    private Snake snake;
-    private GameWorld myWorld;
+    protected Snake snake;
+    protected GameWorld myWorld;
     
-    public InputHandler(Snake snake, GameWorld world) {
-        this.snake = snake; 
-        myWorld = world;
+    public InputHandler(GameWorld world) {
+        this.myWorld = world;
+        this.snake = myWorld.getSnake();
     }
     
     @Override
@@ -22,6 +22,7 @@ public class InputHandler implements InputProcessor {
     @Override
     public boolean keyDown(int keycode) {
         if (myWorld.isReady()) {
+            // начнем игру
             myWorld.start();
         } else if (myWorld.isGameOver()) {
             // Обнулим все перменные, перейдем в GameState.READ
