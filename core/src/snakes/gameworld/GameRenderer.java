@@ -7,9 +7,9 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.color;
 import snakes.helpers.AssetLoader;
 import snakes.objects.Apple;
+import snakes.objects.Applyable;
 import snakes.objects.Battery;
 import snakes.objects.ColdApple;
 import snakes.objects.Ice;
@@ -24,12 +24,12 @@ public class GameRenderer {
     
     private GameWorld myWorld;
     private Snake snake;
-    private Apple apple;
-    private ColdApple coldApple;
-    private Battery battery;
-    private Ice ice;
-    private Rock rock;
-    private Paint paint;
+    private Applyable apple;
+    private Applyable coldApple;
+    private Applyable battery;
+    private Applyable ice;
+    private Applyable rock;
+    private Applyable paint;
     
     private int snakeLength;
     private int midPointY;

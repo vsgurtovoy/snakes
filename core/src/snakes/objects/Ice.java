@@ -12,7 +12,7 @@ public class Ice extends Applyable {
     Random r;
     
     public Ice(GameWorld world, int x, int y) {
-        super(world, x, y);
+        super(world, x, y, objType.APPLE);
         time = 0;
         interval = 4f;
         life = 4f;

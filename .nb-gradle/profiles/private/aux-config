@@ -8,7 +8,11 @@
     </open-files>
     <editor-bookmarks lastBookmarkId="0" xmlns="http://www.netbeans.org/ns/editor-bookmarks/2"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-      <group/>
+      <group>
+        <file>file:/home/vlad/konstruirovanie/snakes/core/src/snakes/objects/Applyable.java</file>
+        <file>file:/home/vlad/konstruirovanie/snakes/core/src/snakes/gameworld/GameRenderer.java</file>
+        <file>file:/home/vlad/konstruirovanie/snakes/core/src/snakes/gameworld/GameWorld.java</file>
+      </group>
     </open-files>
   </auxiliary>
 </gradle-project-properties>

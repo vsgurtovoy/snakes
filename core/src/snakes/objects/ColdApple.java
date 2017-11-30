@@ -12,7 +12,7 @@ public class ColdApple extends Applyable {
     Random r;
     
     public ColdApple(GameWorld world, int x, int y) {
-        super(world, x, y);
+        super(world, x, y, objType.APPLE);
         time = 0;
         interval = 7f;
         life = 7f;

@@ -1,11 +1,7 @@
 package snakes.gameworld;
 
-import snakes.objects.Apple;
-import snakes.objects.Battery;
-import snakes.objects.ColdApple;
-import snakes.objects.Ice;
-import snakes.objects.Paint;
-import snakes.objects.Rock;
+import snakes.objects.Applyable;
+import snakes.objects.Applyable.objType;
 import snakes.objects.Snake;
 
 public class GameWorld {
@@ -19,33 +15,33 @@ public class GameWorld {
         return snake;
     }
     
-    private Apple apple;
-    public Apple getApple() {
+    private Applyable apple;
+    public Applyable getApple() {
         return apple;
     }
     
-    private ColdApple coldApple;
-    public ColdApple getColdApple() {
+    private Applyable coldApple;
+    public Applyable getColdApple() {
         return coldApple;
     }
     
-    private Battery battery;
-    public Battery getBattery() {
+    private Applyable battery;
+    public Applyable getBattery() {
         return battery;
     }
     
-    private Ice ice;
-    public Ice getIce() {
+    private Applyable ice;
+    public Applyable getIce() {
         return ice;
     }
     
-    private Rock rock;
-    public Rock getRock() {
+    private Applyable rock;
+    public Applyable getRock() {
         return rock;
     }
     
-    private Paint paint;
-    public Paint getPaint() {
+    private Applyable paint;
+    public Applyable getPaint() {
         return paint;
     }
     
@@ -65,12 +61,12 @@ public class GameWorld {
     public GameWorld() {
         score = 0;
         snake = new Snake(this, 0, 0, GameWorld.DOT_SIZE, GameWorld.DOT_SIZE);
-        apple = new Apple(this, 50, 50);
-        coldApple = new ColdApple(this, -70, -70);
-        battery = new Battery(this, -80, -80);
-        ice = new Ice(this, -90, -90);
-        rock = new Rock(this, -100, -100);
-        paint = new Paint(this, -110, -110);
+        apple = new Applyable(this, 50, 50, objType.APPLE);
+        coldApple = new Applyable(this, -70, -70, objType.COLDAPPLE);
+        battery = new Applyable(this, -80, -80, objType.BATTERY);
+        ice = new Applyable(this, -90, -90, objType.ICE);
+        rock = new Applyable(this, -100, -100, objType.ROCK);
+        paint = new Applyable(this, -110, -110, objType.PAINT);
         currentState = GameState.READY;
     }
     

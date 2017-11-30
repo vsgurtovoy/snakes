@@ -9,7 +9,7 @@ public class Apple extends Applyable {
     Random r;
 
     public Apple(GameWorld world, int x, int y) {
-        super(world, x, y);
+        super(world, x, y, objType.APPLE);
         r = new Random();
     }
     

@@ -12,7 +12,7 @@ public class Rock extends Applyable {
     Random r;
 
     public Rock(GameWorld world, int x, int y) {
-        super(world, x, y);
+        super(world, x, y, objType.APPLE);
         time = 0;
         interval = 8f;
         life = 8f;

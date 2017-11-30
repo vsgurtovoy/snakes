@@ -11,7 +11,7 @@ public class Paint extends Applyable {
     Random r;
     
     public Paint(GameWorld world, int x, int y) {
-        super(world, x, y);
+        super(world, x, y, objType.APPLE);
         time = 0;
         interval = 1f;
         life = 20f;

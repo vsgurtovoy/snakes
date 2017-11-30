@@ -12,7 +12,7 @@ public class Battery  extends Applyable {
     Random r;
 
     public Battery(GameWorld world, int x, int y) {
-        super(world, x, y);
+        super(world, x, y, objType.APPLE);
         time = 0;
         interval = 5f;
         life = 10f;
