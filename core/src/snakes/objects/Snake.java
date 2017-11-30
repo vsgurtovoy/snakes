@@ -8,6 +8,11 @@ public class Snake {
     private enum direction {
         LEFT, RIGHT, UP, DOWN
     }
+    
+    private enum color {
+        GREEN, RED, BLUE
+    }
+    
     // TODO поменять на linked list для большей производительности
     // Координаты частей змейки
     private final int x[] = new int[GameWorld.ALL_DOTS];
@@ -18,10 +23,14 @@ public class Snake {
     private int height;
     // Время между переходами
     private float time;
+    private float speedTime = 0;
+    private float speedDuration = 5f;
     // скорость передвижения змейки
     private float velocity;
     // Направление движения змеи
     private direction currentDirection;
+    // цвет
+    private color currentColor;
     // Длина змеи
     private int length;
     // напр
@@ -29,6 +38,7 @@ public class Snake {
     
     public boolean isDead;
     private GameWorld world;
+    public static float STANDART_VELOCITY =  0.5f;
     
     
     public Snake(GameWorld world, int x, int y, int width, int height) {
@@ -38,10 +48,11 @@ public class Snake {
         this.width = width;
         this.height = height;
         currentDirection = direction.DOWN;
+        currentColor = color.GREEN;
         rotation = 180;
         length = 1;
         isDead = false;
-        velocity = 0.5f;
+        velocity = Snake.STANDART_VELOCITY;
         for (int i = 0; i < GameWorld.ALL_DOTS; i++) {
             circle[i] = new Circle(this.x[0]+GameWorld.DOT_SIZE/2,
                 this.y[0]+GameWorld.DOT_SIZE/2, 
@@ -83,11 +94,39 @@ public class Snake {
     }
     
     public void makeFaster() {
-        velocity -= 0.25f;
+        velocity -= 0.3f;
     }
     
     public void makeSlower() {
         velocity += 0.25f;
+    }
+    
+    public void changeColor() {
+        switch (currentColor) {
+            case GREEN:
+                currentColor = color.RED;
+                break;
+            case RED:
+                currentColor = color.BLUE;
+                break;
+            case BLUE:
+                currentColor = color.GREEN;
+                break;
+            default:
+                break;
+        }
+    }
+    
+    public boolean isGreen() {
+        return currentColor == color.GREEN;
+    }
+
+    public boolean isRed() {
+        return currentColor == color.RED;
+    }
+
+    public boolean isBlue() {
+        return currentColor == color.BLUE;
     }
     
     public Circle getCircle(int i) {
@@ -127,6 +166,13 @@ public class Snake {
     }    
     public void update(float delta) {
         time += delta;
+        if (velocity != Snake.STANDART_VELOCITY) {
+            speedTime += delta;
+            if (speedTime >= speedDuration) {
+                velocity = Snake.STANDART_VELOCITY;
+                speedTime = 0;
+            }            
+        }
         if (time >= velocity) {
             time = 0;          
             this.move();

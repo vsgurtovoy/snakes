@@ -36,6 +36,9 @@ public class Handler {
         if (Intersector.overlaps(world.getRock().getCircle(), snake.getCircle(0))) {
             return world.getRock();
         }
+        if (Intersector.overlaps(world.getPaint().getCircle(), snake.getCircle(0))) {
+            return world.getPaint();
+        }
         return null;
     }
     

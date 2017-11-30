@@ -1,30 +1,22 @@
 package snakes.objects;
 
-import com.badlogic.gdx.Gdx;
 import java.util.Random;
 import snakes.gameworld.GameWorld;
 
-public class Battery  extends Applyable {
+public class Paint extends Applyable {
     float time;
     float interval;
     float life;
     boolean lives;
     Random r;
-
-    public Battery(GameWorld world, int x, int y) {
+    
+    public Paint(GameWorld world, int x, int y) {
         super(world, x, y);
         time = 0;
-        interval = 5f;
-        life = 10f;
+        interval = 1f;
+        life = 20f;
         lives = false;
         r = new Random();
-    }
-    
-    @Override
-    public boolean apply(Snake snake) {
-        snake.makeFaster();
-        kill();
-        return true;        
     }
     
     public void update(float delta) {
@@ -34,7 +26,7 @@ public class Battery  extends Applyable {
         } else if (!lives && time >= interval) {
             lives = true;
             time = 0;
-            
+
             int xx;
             int yy;
 
@@ -58,7 +50,15 @@ public class Battery  extends Applyable {
         this.setPos(-20, -20);
     }
     
+    
     public void onRestart() {
         kill();
+    }
+
+    @Override
+    public boolean apply(Snake snake) {
+        snake.changeColor();
+        kill();
+        return true;        
     }
 }

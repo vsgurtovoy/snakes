@@ -4,6 +4,7 @@ import snakes.objects.Apple;
 import snakes.objects.Battery;
 import snakes.objects.ColdApple;
 import snakes.objects.Ice;
+import snakes.objects.Paint;
 import snakes.objects.Rock;
 import snakes.objects.Snake;
 
@@ -43,6 +44,11 @@ public class GameWorld {
         return rock;
     }
     
+    private Paint paint;
+    public Paint getPaint() {
+        return paint;
+    }
+    
     private static int score;
     public static int getScore() {
         return score;
@@ -64,19 +70,20 @@ public class GameWorld {
         battery = new Battery(this, -80, -80);
         ice = new Ice(this, -90, -90);
         rock = new Rock(this, -100, -100);
+        paint = new Paint(this, -110, -110);
         currentState = GameState.READY;
     }
     
     public void updateRunning(float delta) {
         if (snake.isDead) {
             currentState = GameState.GAMEOVER;
-            return;
         } else {
             snake.update(delta);
             coldApple.update(delta);
             battery.update(delta);
             ice.update(delta);
             rock.update(delta);
+            paint.update(delta);
         }
     }
     
@@ -115,6 +122,7 @@ public class GameWorld {
         battery.onRestart();
         ice.onRestart();
         rock.onRestart();
+        paint.onRestart();
     }
 
     public boolean isGameOver() {

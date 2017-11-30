@@ -14,13 +14,17 @@ public class AssetLoader {
     public static Texture texture;
     public static TextureRegion bg;
     public static Animation snakeAnimation, appleAnimation, coldAppleAnimation;
-    public static Animation batteryAnimation, iceAnimation, rockAnimation;
+    public static Animation redSnakeAnimation, blueSnakeAnimation;
+    public static Animation batteryAnimation, iceAnimation, rockAnimation, paintAnimation;
     public static TextureRegion snake1, snake2, snakeBody;
+    public static TextureRegion redSnake1, redSnake2, redSnakeBody;
+    public static TextureRegion blueSnake1, blueSnake2, blueSnakeBody;
     public static TextureRegion apple1, apple2;
     public static TextureRegion coldApple1, coldApple2;
     public static TextureRegion battery1, battery2;
     public static TextureRegion ice1, ice2;
     public static TextureRegion rock1, rock2;
+    public static TextureRegion paint1, paint2, paint3;
     public static Sound dead, turn, coin;
     public static Preferences prefs;
 
@@ -36,20 +40,48 @@ public class AssetLoader {
 
         bg = new TextureRegion(texture, 0, 0, 136, 43);
         bg.flip(false, true);
-        
+// зеленая змея        
         snakeBody = new TextureRegion(texture, 136, 11, 10, 10);
         snakeBody.flip(false, true);
 
         snake1 = new TextureRegion(texture, 136, 0, 10, 10);
         snake1.flip(false, true);
 
-        snake2 = new TextureRegion(texture, 153, 0, 10, 10);
+        snake2 = new TextureRegion(texture, 147, 0, 10, 10);
         snake2.flip(false, true);
 
         TextureRegion[] snakes = { snake1, snake2 };
         snakeAnimation = new Animation<TextureRegion>(0.6f, snakes);
         snakeAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
         
+// красная змея
+        redSnakeBody = new TextureRegion(texture, 158, 11, 10, 10);
+        redSnakeBody.flip(false, true);
+
+        redSnake1 = new TextureRegion(texture, 158, 0, 10, 10);
+        redSnake1.flip(false, true);
+
+        redSnake2 = new TextureRegion(texture, 169, 0, 10, 10);
+        redSnake2.flip(false, true);
+
+        TextureRegion[] redSnakes = { redSnake1, redSnake2 };
+        redSnakeAnimation = new Animation<TextureRegion>(0.6f, redSnakes);
+        redSnakeAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+        
+// красная змея
+        blueSnakeBody = new TextureRegion(texture, 180, 11, 10, 10);
+        blueSnakeBody.flip(false, true);
+
+        blueSnake1 = new TextureRegion(texture, 180, 0, 10, 10);
+        blueSnake1.flip(false, true);
+
+        blueSnake2 = new TextureRegion(texture, 191, 0, 10, 10);
+        blueSnake2.flip(false, true);
+
+        TextureRegion[] blueSnakes = { blueSnake1, blueSnake2 };
+        blueSnakeAnimation = new Animation<TextureRegion>(0.6f, blueSnakes);
+        blueSnakeAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+//        
         apple1 = new TextureRegion(texture, 136, 22, 10, 10);
         apple2 = new TextureRegion(texture, 147, 22, 10, 10);
         
@@ -84,6 +116,14 @@ public class AssetLoader {
         TextureRegion[] rocks = { rock1, rock2 };
         rockAnimation = new Animation<TextureRegion>(0.6f, rocks);
         rockAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
+        
+        paint1 = new TextureRegion(texture, 136, 77, 10, 10);
+        paint2 = new TextureRegion(texture, 147, 77, 10, 10);
+        paint3 = new TextureRegion(texture, 158, 77, 10, 10);
+        
+        TextureRegion[] paints = { paint1, paint2, paint3 };
+        paintAnimation = new Animation<TextureRegion>(0.6f, paints);
+        paintAnimation.setPlayMode(Animation.PlayMode.LOOP_PINGPONG);
         
         dead = Gdx.audio.newSound(Gdx.files.internal("data/dead.wav"));
         turn = Gdx.audio.newSound(Gdx.files.internal("data/turn.wav"));
