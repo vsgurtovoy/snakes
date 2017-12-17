@@ -2,6 +2,7 @@ package snakes.gameworld;
 
 import snakes.objects.Applyable;
 import snakes.objects.Applyable.objType;
+import snakes.objects.ApplyableFactory;
 import snakes.objects.Snake;
 
 public class GameWorld {
@@ -45,6 +46,8 @@ public class GameWorld {
         return paint;
     }
     
+    private ApplyableFactory factory;
+    
     private static int score;
     public static int getScore() {
         return score;
@@ -60,13 +63,14 @@ public class GameWorld {
     
     public GameWorld() {
         score = 0;
+        factory = new ApplyableFactory(this);
         snake = new Snake(this, 0, 0, GameWorld.DOT_SIZE, GameWorld.DOT_SIZE);
-        apple = new Applyable(this, 50, 50, objType.APPLE);
-        coldApple = new Applyable(this, -70, -70, objType.COLDAPPLE);
-        battery = new Applyable(this, -80, -80, objType.BATTERY);
-        ice = new Applyable(this, -90, -90, objType.ICE);
-        rock = new Applyable(this, -100, -100, objType.ROCK);
-        paint = new Applyable(this, -110, -110, objType.PAINT);
+        apple = factory.createApple();
+        coldApple = factory.createColdApple();
+        battery = factory.createBattery();
+        ice = factory.createIce();
+        rock = factory.createRock();
+        paint = factory.createPaint();
         currentState = GameState.READY;
     }
     
