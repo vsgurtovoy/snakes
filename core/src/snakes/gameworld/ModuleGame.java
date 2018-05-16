@@ -14,7 +14,9 @@ public class ModuleGame implements Module {
     @Override
     public void load(GameRenderer gr, GameWorld gw, Module batch) {
         this.gw = gw;
-        gr.setModule(batch);
+        if(gr != null){
+            gr.setModule(batch);
+        }
         this.rnd = new Random(System.currentTimeMillis());
     }
 
@@ -25,7 +27,7 @@ public class ModuleGame implements Module {
         if(snake.getY(0) == apple.getY()){
             snake.moveRight();
         } else {
-            snake.moveUp();
+            snake.moveDown();
         }
         return 0;
     }
