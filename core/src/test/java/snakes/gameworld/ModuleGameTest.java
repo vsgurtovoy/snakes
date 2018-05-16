@@ -6,7 +6,7 @@ import org.junit.Test;
 public class ModuleGameTest {
     @Test
     public void test(){
-        Assert.assertEquals(1,1);
+        Assert.assertEquals(0,1);
     }
 
 }
