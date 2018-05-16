@@ -24,6 +24,9 @@ public class Handler {
         if (Intersector.overlaps(world.getApple().getCircle(), snake.getCircle(0))) {
             return world.getApple();
         }
+        if (Intersector.overlaps(world.getFlickerApple().getCircle(), snake.getCircle(0))) {
+            return world.getFlickerApple();
+        }
         if (Intersector.overlaps(world.getColdApple().getCircle(), snake.getCircle(0))) {
             return world.getColdApple();
         }

@@ -20,6 +20,11 @@ public class GameWorld {
     public Applyable getApple() {
         return apple;
     }
+
+    private Applyable flickerApple;
+    public Applyable getFlickerApple() {
+        return flickerApple;
+    }
     
     private Applyable coldApple;
     public Applyable getColdApple() {
@@ -66,6 +71,7 @@ public class GameWorld {
         factory = new ApplyableFactory(this);
         snake = new Snake(this, 0, 0, GameWorld.DOT_SIZE, GameWorld.DOT_SIZE);
         apple = factory.createApple();
+        flickerApple = factory.createFlickerApple();
         coldApple = factory.createColdApple();
         battery = factory.createBattery();
         ice = factory.createIce();
@@ -79,6 +85,7 @@ public class GameWorld {
             currentState = GameState.GAMEOVER;
         } else {
             snake.update(delta);
+            flickerApple.update(delta);
             coldApple.update(delta);
             battery.update(delta);
             ice.update(delta);
@@ -118,6 +125,7 @@ public class GameWorld {
         score = 0;
         snake.onRestart();
         apple.onRestart();
+        flickerApple.onRestart();
         coldApple.onRestart();
         battery.onRestart();
         ice.onRestart();
