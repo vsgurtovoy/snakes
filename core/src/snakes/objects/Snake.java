@@ -137,7 +137,7 @@ public class Snake {
         if (currentDirection != direction.DOWN) {
             currentDirection = direction.UP;  
             rotation = 0;
-            AssetLoader.turn.play();
+            //AssetLoader.turn.play();
         }
     }
 
@@ -145,7 +145,7 @@ public class Snake {
         if (currentDirection != direction.UP) {
             currentDirection = direction.DOWN;
             rotation = 180;
-            AssetLoader.turn.play();
+            //AssetLoader.turn.play();
         }
     }
 
@@ -153,7 +153,7 @@ public class Snake {
         if (currentDirection != direction.RIGHT) {
             currentDirection = direction.LEFT;
             rotation = -90;
-            AssetLoader.turn.play();
+            //AssetLoader.turn.play();
         }
     }
 
@@ -161,7 +161,7 @@ public class Snake {
         if (currentDirection != direction.LEFT) {
             currentDirection = direction.RIGHT;  
             rotation = 90;
-            AssetLoader.turn.play();
+            //AssetLoader.turn.play();
         }
     }    
     public void update(float delta) {
@@ -183,7 +183,7 @@ public class Snake {
         }
         Handler.collides(this);
         if (isDead) {
-            AssetLoader.dead.play();
+            //AssetLoader.dead.play();
         }
     }
     

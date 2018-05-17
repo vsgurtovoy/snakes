@@ -13,6 +13,8 @@ public class ApplyableFactory {
     public Applyable createApple() {
         return new Applyable(this.world, 50, 50, Applyable.objType.APPLE);
     }
+
+    public Applyable createFlickerApple() { return new Applyable(this.world, 60, 60, Applyable.objType.FLICKERAPPLE); }
     
     public Applyable createColdApple() {
         return new Applyable(this.world, -70, -70, Applyable.objType.COLDAPPLE);

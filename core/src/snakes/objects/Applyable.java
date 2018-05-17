@@ -5,9 +5,13 @@ import java.util.Random;
 import snakes.gameworld.GameWorld;
 import snakes.helpers.AssetLoader;
 
+
 public class Applyable {
     int x, y;
-    
+
+    public void setX(int x){ this.x = x; }
+    public void setY(int y){ this.y = y; }
+
     GameWorld world;
     
     protected Circle circle;
@@ -20,10 +24,11 @@ public class Applyable {
     Random r;
     
     public static enum objType {
-        APPLE, COLDAPPLE, BATTERY, ICE, ROCK, PAINT
+        APPLE, COLDAPPLE, BATTERY, ICE, ROCK, PAINT, FLICKERAPPLE
     }
     
     private objType type;
+    private boolean isEthereal=false;
     
     public int getX() {
         return x;
@@ -53,7 +58,7 @@ public class Applyable {
         this.y = y;
         setCircle(x, y);
     } 
-    
+
     public Applyable(GameWorld world, int x, int y, Applyable.objType type) {
         this.x = x;
         this.y= y;
@@ -67,6 +72,10 @@ public class Applyable {
 
         switch (type) {
             case APPLE:
+                interval = 0f;
+                life = 0f;
+                break;
+            case FLICKERAPPLE:
                 interval = 0f;
                 life = 0f;
                 break;
@@ -94,15 +103,19 @@ public class Applyable {
                 break;
         }
     }
-    
+
+    public boolean isEthereal() {
+        return isEthereal;
+    }
+
     public boolean apply(Snake snake) {
+        int xx;
+        int yy;
         if (null != type) switch (type) {
             case APPLE:
                 snake.feed(1);
                 AssetLoader.coin.play();
                 GameWorld.addScore(1);
-                int xx;
-                int yy;
                 do {
                     xx = r.nextInt(130);
                     yy = r.nextInt(200);
@@ -113,6 +126,23 @@ public class Applyable {
                     bufCircle.setPosition(xx, yy);
                 } while (!Handler.hasSpace(world, bufCircle));
                 this.setPos(xx, yy);
+                break;
+            case FLICKERAPPLE:
+                if(!isEthereal()) {
+                    snake.feed(1);
+                    AssetLoader.coin.play();
+                    GameWorld.addScore(1);
+                    do {
+                        xx = r.nextInt(130);
+                        yy = r.nextInt(200);
+                        xx = xx / 10;
+                        xx *= 10;
+                        yy = yy / 10;
+                        yy *= 10;
+                        bufCircle.setPosition(xx, yy);
+                    } while (!Handler.hasSpace(world, bufCircle));
+                    this.setPos(xx, yy);
+                }
                 break;
             case COLDAPPLE:
                 snake.cut(1);
@@ -141,6 +171,10 @@ public class Applyable {
     
     public void update(float delta) {
         if (type == objType.APPLE) {
+            return;
+        }
+        if(type == objType.FLICKERAPPLE){
+            this.isEthereal = System.currentTimeMillis()/1000 % 10 < 5;
             return;
         }
         time += delta;
@@ -174,7 +208,7 @@ public class Applyable {
     }
     
     public void onRestart() {
-        if (type == objType.APPLE) {
+        if (type == objType.APPLE || type == objType.FLICKERAPPLE) {
             int xx;
             int yy;
 
@@ -189,6 +223,7 @@ public class Applyable {
             } while (!Handler.hasSpace(world, bufCircle));
 
             this.setPos(xx, yy);
+            return;
         }
         kill();
     }

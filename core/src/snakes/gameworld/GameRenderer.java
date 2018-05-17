@@ -1,6 +1,7 @@
 package snakes.gameworld;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -8,14 +9,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import snakes.helpers.AssetLoader;
-import snakes.objects.Apple;
-import snakes.objects.Applyable;
-import snakes.objects.Battery;
-import snakes.objects.ColdApple;
-import snakes.objects.Ice;
-import snakes.objects.Paint;
-import snakes.objects.Rock;
-import snakes.objects.Snake;
+import snakes.modules.Module;
+import snakes.modules.ModuleEngine;
+import snakes.objects.*;
 
 public class GameRenderer {
     private OrthographicCamera cam;
@@ -23,8 +19,10 @@ public class GameRenderer {
     private SpriteBatch batcher;
     
     private GameWorld myWorld;
-    private Snake snake;
+    Snake snake;
+    private Module module = null;
     private Applyable apple;
+    private Applyable flickerApple;
     private Applyable coldApple;
     private Applyable battery;
     private Applyable ice;
@@ -46,6 +44,7 @@ public class GameRenderer {
     private void initGameObjects() {
         snake = myWorld.getSnake();
         apple = myWorld.getApple();
+        flickerApple = myWorld.getFlickerApple();
         coldApple = myWorld.getColdApple();
         battery = myWorld.getBattery();
         ice = myWorld.getIce();
@@ -87,11 +86,18 @@ public class GameRenderer {
         initAssets();
     }
     
-    public void render(float delta) {        
+    public void render(float delta) {
         runTime += delta;
-        
+
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        if(this.module != null){
+            this.module.run();
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.F5)){{
+            ModuleEngine.main(null, this, myWorld);
+        }}
 /*
         shapeRenderer.begin(ShapeType.Filled);
         shapeRenderer.setColor(55 / 255.0f, 80 / 255.0f, 100 / 255.0f, 1);
@@ -106,9 +112,9 @@ public class GameRenderer {
 
         if (snake.isGreen()) {
             // Отрисовать голову змеи
-            batcher.draw((TextureRegion) snakeAnimation.getKeyFrame(runTime), 
-                    snake.getX(0), snake.getY(0), 
-                    snake.getWidth()/2f, snake.getHeight()/2f, 
+            batcher.draw((TextureRegion) snakeAnimation.getKeyFrame(runTime),
+                    snake.getX(0), snake.getY(0),
+                    snake.getWidth()/2f, snake.getHeight()/2f,
                     snake.getWidth(), snake.getHeight(),
                     1, 1, snake.getRotation());
             // Отрисовать тело змеи
@@ -118,9 +124,9 @@ public class GameRenderer {
             }
         } else if (snake.isRed()) {
             // Отрисовать голову змеи
-            batcher.draw((TextureRegion) redSnakeAnimation.getKeyFrame(runTime), 
-                    snake.getX(0), snake.getY(0), 
-                    snake.getWidth()/2f, snake.getHeight()/2f, 
+            batcher.draw((TextureRegion) redSnakeAnimation.getKeyFrame(runTime),
+                    snake.getX(0), snake.getY(0),
+                    snake.getWidth()/2f, snake.getHeight()/2f,
                     snake.getWidth(), snake.getHeight(),
                     1, 1, snake.getRotation());
             // Отрисовать тело змеи
@@ -130,9 +136,9 @@ public class GameRenderer {
             }
         } else if (snake.isBlue()) {
             // Отрисовать голову змеи
-            batcher.draw((TextureRegion) blueSnakeAnimation.getKeyFrame(runTime), 
-                    snake.getX(0), snake.getY(0), 
-                    snake.getWidth()/2f, snake.getHeight()/2f, 
+            batcher.draw((TextureRegion) blueSnakeAnimation.getKeyFrame(runTime),
+                    snake.getX(0), snake.getY(0),
+                    snake.getWidth()/2f, snake.getHeight()/2f,
                     snake.getWidth(), snake.getHeight(),
                     1, 1, snake.getRotation());
             // Отрисовать тело змеи
@@ -141,13 +147,21 @@ public class GameRenderer {
                 batcher.draw(blueSnakeBody, snake.getX(i), snake.getY(i));
             }
         }
-        
+
         // отрисовать яблоко
-        batcher.draw((TextureRegion) appleAnimation.getKeyFrame(runTime), 
-                apple.getX(), apple.getY(), 
-                snake.getWidth()/2f, snake.getHeight()/2f, 
+        batcher.draw((TextureRegion) appleAnimation.getKeyFrame(runTime),
+                apple.getX(), apple.getY(),
+                snake.getWidth()/2f, snake.getHeight()/2f,
                 snake.getWidth(), snake.getHeight(),
                 1, 1, 180);
+        // отрисовать mod яблоко
+        if(!flickerApple.isEthereal()) {
+            batcher.draw((TextureRegion) appleAnimation.getKeyFrame(runTime),
+                    flickerApple.getX(), flickerApple.getY(),
+                    snake.getWidth() / 2f, snake.getHeight() / 2f,
+                    snake.getWidth(), snake.getHeight(),
+                    1, 1, 180);
+        }
         // отрисовать холодное яблоко
         batcher.draw((TextureRegion) coldAppleAnimation.getKeyFrame(runTime), 
                 coldApple.getX(), coldApple.getY(), 
@@ -234,5 +248,9 @@ public class GameRenderer {
             shapeRenderer.end();*/
         }
         batcher.end();
+    }
+
+    public void setModule(Module module) {
+        this.module = module;
     }
 }
