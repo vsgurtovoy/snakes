@@ -25,7 +25,7 @@ public class ModuleGame implements Module {
         Applyable apple = gw.getApple();
         Snake snake = gw.getSnake();
         if(snake.getY(0) == apple.getY()){
-            snake.moveRight();
+            snake.moveLeft();
         } else {
             snake.moveDown();
         }
