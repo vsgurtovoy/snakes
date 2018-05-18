@@ -11,13 +11,13 @@ public class ModuleEngine {
 
   public static void main(String args[], GameRenderer gr, GameWorld gw) {
 
-    JFileChooser fileopen = new JFileChooser("C:\\Users\\sanis\\Documents\\snakes\\core\\build\\classes\\main\\snakes\\gameworld");
+    JFileChooser fileopen = new JFileChooser("/home/vlad/constr");
     int ret = fileopen.showDialog(null, "Загрузить");
     String moduleName = null;
     String modulePath = null;
     if (ret == JFileChooser.APPROVE_OPTION) {
         File file = fileopen.getSelectedFile();
-        moduleName = file.getName().split("\\.class")[0];
+        moduleName = file.getName().split(".java")[0];
         modulePath = (String)file.getPath();
     }
 
