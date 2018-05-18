@@ -8,8 +8,8 @@ public class ModuleGameTest {
     @Test
     public void ChangeDirectionToAppleDown(){
         GameWorld gw = new GameWorld();
-        gw.getSnake().moveRight();
-        Assert.assertEquals(90, gw.getSnake().getRotation());
+        gw.getSnake().moveLeft();
+        Assert.assertEquals(-90, gw.getSnake().getRotation());
         gw.getApple().setX(0);
         gw.getApple().setY(7);
         ModuleGame bot = new ModuleGame();
@@ -30,17 +30,17 @@ public class ModuleGameTest {
     }
 
     @Test
-    public void ChangeDirectionToAppleRight(){
+    public void ChangeDirectionToAppleLeft(){
         GameWorld gw = new GameWorld();
         ModuleGame bot = new ModuleGame();
         bot.load(null, gw, null);
         bot.run();
-        Assert.assertEquals(90, gw.getSnake().getRotation());
+        Assert.assertEquals(-90, gw.getSnake().getRotation());
 
     }
 
     @Test
-    public void KeepDirectionToAppleRight(){
+    public void KeepDirectionToAppleLeft(){
         GameWorld gw = new GameWorld();
         gw.getSnake().moveRight();
         Assert.assertEquals(90, gw.getSnake().getRotation());
